@@ -31,7 +31,7 @@
 	<label style="font-size:28px; font-weight: bold; position:absolute; left: 48%; margin-top: 20px">30</label>
 	<div class="to"></div>
 	<div style="text-align:center; padding:20px 0px 20px 0px">当前总积分：20000</div>
-	<a href="#" data-role="button">完善患者信息</a>
+	<a href="patient.php" data-role="button">完善患者信息</a>
 	<a href="#" data-role="button">继续录入</a>
   </div>
 </div>
