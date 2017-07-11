@@ -14,13 +14,13 @@
 
   <div data-role="content" data-theme="b">
     <div style="text-align:center"><img src="images/logo.png" width="200px" height="100px"></div>
-    <form method="post" action="index.php">
+    <form method="post" action="user.php">
 
         <input type="text" name="user" id="user" placeholder=" 手机号/用户名/邮箱">       
         <input type="password" name="password" id="password" placeholder="密码" autocomplete="off">
       
 		<input type="submit" value="登录">
-		<label style="margin-left:0px"><a href="#" style="text-decoration:none;">忘记密码?</a></label><label style="margin-right:0px"><a href="#" style="text-decoration:none;">马上注册</a></label>
+		<label style="margin-left:0px"><a href="#" style="text-decoration:none;">忘记密码?</a></label><label style="float:right"><a href="#" style="text-decoration:none;">马上注册</a></label>
     </form>
   </div>
 </div>
