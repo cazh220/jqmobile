@@ -1,0 +1,16 @@
+/**
+ *  样式
+ */
+.product {
+	text-align:left;
+	margin-left:40px;
+	font-size:12px;
+}
+a {
+	text-decoration:none;
+}
+
+.attribute{
+	padding:10px 20px;
+	line-height:30px;
+}
