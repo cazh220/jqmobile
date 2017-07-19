@@ -17,14 +17,31 @@
 		  auto: true,
 		  delay: 2000
 		});
+		
+		$("#hear li").click(function(){
+			$(this).css({
+				borderBottom: "2px solid red",
+				height:"43px"
+			}).siblings().css({
+				borderBottom: "none",
+				height:"45px"
+			});
+		});					
+			
+		$("#hear li").click(function(){
+			$(this).addClass("action").siblings().removeClass("action");
+			var index = $(this).index();
+			$("#contentop li").eq(index).css("display","block").siblings().css("display","none");
+		});
+		
 	});	
 </script> 
 </head>
 <body>
 
 <div data-role="page">
-  <div data-role="header" data-position="fixed"><a href="#" data-role="button" data-icon="arrow-l" data-rel="back">后退</a>
-  <h1>积分商城</h1>
+  <div data-role="header" data-position="fixed"><a href="#" data-role="button" data-icon="arrow-l" data-rel="back">返回</a>
+  <h1>商品详情</h1>
   </div>
   
 	<div class="hsldr-container">
@@ -80,17 +97,80 @@
 			<hr>
 			<div class="attribute">产品名称：考拉</div>
 			<hr>
-			<div class="attribute">规格：100cm</div>
+			<div class="attribute">参数规格：100cm</div>
 			<hr>
 			<div class="attribute">积分：10000</div>
 			
-			<div data-role="navbar">
-			  <ul>
-				<li><a href="#" class="ui-btn-active ui-state-persist">商品介绍</a></li>
-				<li><a href="#pagetwo">规格参数</a></li>
-				<li><a href="#pagetwo">包装售后</a></li>
-			  </ul>
+			
+			<div data-role = "content-floud">			
+			<div style="font-family: '微软雅黑';">
+				<ul id="hear">
+					<li class="action" style="border-bottom: 2px solid red;height: 43px;"><a href="#">未使用<span style="color: red;">(0)</span></a></li>
+					<li><a href="#" >已使用<span style="color: red;">(8)</span></a></li>
+					<li><a href="#" >已过期<span style="color: red;">(2)</span></a></li>
+				</ul>
+				<ul id="contentop">
+					<li class="action">
+                        <div class="alo">
+                        	<div class="ui-grid-a sty3" >
+                        		<div class="ui-block-a">优惠券</div>
+                        		<div class="ui-block-b">仅可购买部分商品</div>
+                        	</div>
+                        	<div class="ui-grid-a sty2" >
+                        		<div class="ui-block-a "><span>￥50.00</span></div>
+                        		<div class="ui-block-b"></div>
+                        	</div>
+                        	<div class="cllio"></div>
+                        	<div class="ui-grid-a Buy" >
+                        		<div class="ui-block-a">兑换码：0001</div>
+                        		<div class="ui-block-b">2016.02.01-2016.08.25</div>
+                        	</div>
+                        </div>
+                        <div class="alo">
+                        	<div class="ui-grid-a sty3" >
+                        		<div class="ui-block-a">优惠券</div>
+                        		<div class="ui-block-b">仅可购买部分商品</div>
+                        	</div>
+                        	<div class="ui-grid-a sty2" >
+                        		<div class="ui-block-a "><span>￥30.00</span></div>
+                        		<div class="ui-block-b">满99元可用</div>
+                        	</div>
+                        	<div class="cllio"></div>
+                        	<p class="sty5">2016.02.01-2016.08.25&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                        </div>
+					</li>
+					<li>
+                       <div class="alo">
+                        	<div class="ui-grid-a sty3" >
+                        		<div class="ui-block-a">优惠券</div>
+                        		<div class="ui-block-b">仅可购买部分商品</div>
+                        	</div>
+                        	<div class="ui-grid-a sty2" >
+                        		<div class="ui-block-a "><span>￥50.00</span></div>
+                        		<div class="ui-block-b"></div>
+                        	</div>
+                        	<div class="cllio"></div>
+                        	<p class="sty5">2016.02.01-2016.08.25&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                        </div>
+					</li>
+					<li>
+						<div class="usl">
+                        	<div class="ui-grid-a sty3" >
+                        		<div class="ui-block-a">优惠券</div>
+                        		<div class="ui-block-b">仅可购买部分商品</div>
+                        	</div>
+                        	<div class="ui-grid-a sty2" >
+                        		<div class="ui-block-a "><span>￥50.00</span></div>
+                        		<div class="ui-block-b"></div>
+                        	</div>
+                        	<div class="cllio"><!--<img src="../images/2001.png"/>--></div>
+                        	<p class="sty5">2016.02.01-2016.08.25&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                       </div>
+					</li>
+				</ul>
+			</div>			
 			</div>
+			
 		</form>
 	</div>
 	
