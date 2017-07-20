@@ -20,9 +20,21 @@
     <form method="post" action="demoform.asp">
 		<ul data-role="listview">
 			<li>
-				<div class="list_product">
-					<div class="list_pic"><img src="images/kl.jpg" class="pic_size"></div>
-					<div class="attr">产品名称：考拉<br> 产品规格：100cm<br> 兑换积分：10000<br> 数量：<span class="buy_num_css" onclick="subplus()"><img src="images/subplus.png" width="20px" height="20px" style="vertical-align: middle;"></span><span id="buy_num">1</span><span class="buy_num_css" onclick="plus()"><img src="images/plus.png" width="20px" height="20px" style="vertical-align: middle;"></span></div>
+				<div class="list_order_success">
+					<div class="title"><img src="images/fill_finish.png" width="20px" height="20px"><span class="text_title">2017-07-20 15:30:11 您的订单（订单号：123456789）</span></div>
+					<div class="order_content">沪鸽双肩背包，数量1，已成功提交；扣除积分99，当前可用积分9900；积分信息请前往会员中心查看</div>
+				</div>
+			</li>
+			<li>
+				<div class="list_order_success">
+					<div class="title"><img src="images/fill_finish.png" width="20px" height="20px"><span class="text_title">2017-07-20 15:30:11 您的订单（订单号：123456789）</span></div>
+					<div class="order_content">沪鸽双肩背包，数量1，已成功提交；扣除积分99，当前可用积分9900；积分信息请前往会员中心查看</div>
+				</div>
+			</li>
+			<li>
+				<div class="list_order_success">
+					<div class="title"><img src="images/fill_finish.png" width="20px" height="20px"><span class="text_title">2017-07-20 15:30:11 您的订单（订单号：123456789）</span></div>
+					<div class="order_content">沪鸽双肩背包，数量1，已成功提交；扣除积分99，当前可用积分9900；积分信息请前往会员中心查看</div>
 				</div>
 			</li>
 			
@@ -30,10 +42,6 @@
 
       
     </form>
-  </div>
-  
-  <div data-role="footer" data-position="fixed">
-    <div style="line-height:40px; float:left; width:100%; text-align:center; background-color:#FF7F00">立即兑换</div>
   </div>
   
 </div>
