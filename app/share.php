@@ -32,7 +32,14 @@
 <div data-role="page">
   <div data-role="header" data-position="fixed"><a href="#" data-role="button" data-icon="arrow-l" data-rel="back">后退</a>
   <h1>订单详情</h1>
-  <a href="#" data-icon="gear">选项</a>
+  <a href="#popupMenu" data-rel="popup" data-transition="slideup" data-icon="gear">选项</a>
+  <div data-role="popup" id="popupMenu" data-theme="b">
+	<ul data-role="listview" data-inset="true" style="min-width:20px">
+		<li data-role="list-divider">请选择</li>
+		<li><a href="#" onclick="share()">微信</a></li>
+		<li><a href="#">微博</a></li>
+	</ul>
+  </div>
   </div>
   
 
@@ -65,7 +72,66 @@
   </div>
   
 </div>
+<script type="text/javascipt">
+<script>
+var dataForWeixin = {
+appId: "",
+MsgImg: "http://chivashi.gotoip1.com/cover.jpg",
+TLImg: "http://chivashi.gotoip1.com/cover.jpg",
+url: "http://mp.weixin.qq.com/s?__biz=MzA3OTQ2NjkwMA==&mid=200600448&idx=1&sn=459125c55439aef94e6eb1df8ab179f3#rd",
+title: '参加NaviCam我知道，赢免费体验！小小胶囊做胃镜，轻轻松松送享胃检！',
+desc: '参加NaviCam我知道，赢免费体验！',
+fakeid: "",
+callback: function () {
+}
+};
+(function () {
+var onBridgeReady = function () {
+// 发送给好友; 
+WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+WeixinJSBridge.invoke('sendAppMessage', {
+"appid": dataForWeixin.appId,
+"img_url": dataForWeixin.MsgImg,
+"img_width": "120",
+"img_height": "120",
+"link": dataForWeixin.url,
+"desc": dataForWeixin.title,
+"title": dataForWeixin.desc
+}, function (res) {
+});
+});
+// 分享到朋友圈;
+WeixinJSBridge.on('menu:share:timeline', function (argv) {
+(dataForWeixin.callback)();
+WeixinJSBridge.invoke('shareTimeline', {
+"img_url": dataForWeixin.TLImg,
+"img_width": "120",
+"img_height": "120",
+"link": dataForWeixin.url,
+"desc": dataForWeixin.desc,
+"title": dataForWeixin.title
+}, function (res) {
+});
+});
+// 分享到微博;
+WeixinJSBridge.on('menu:share:weibo', function (argv) {
+WeixinJSBridge.invoke('shareWeibo', {
+"content": dataForWeixin.title,
+"url": dataForWeixin.url
+}, function (res) {
+});
+});
+};
+if (document.addEventListener) {
+document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+} else if (document.attachEvent) {
+document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+}
+})();
+</script>
 
+</script>
 </body>
 
 </html>
