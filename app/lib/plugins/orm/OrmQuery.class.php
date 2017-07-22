@@ -38,17 +38,6 @@ class OrmQuery {
 	var $sql;
 	
 	/**
-	 * 构造函数(兼容PHP4)
-	 *
-	 * @param 	Array 	$params		数据库连接参数
-	 * @param 	Array	$options	数据库连接选项
-	 * @return OrmQuery
-	 */
-	function OrmQuery($params, $options) {
-		$this->__construct($params, $options);
-	}
-	
-	/**
 	 * 构造函数
 	 *
 	 * @param 	Array 	$params		数据库连接参数

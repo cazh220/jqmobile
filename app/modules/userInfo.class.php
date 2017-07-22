@@ -19,7 +19,7 @@ class userInfo
 	 * 数据库操作对象
 	 * @var OrmQuery
 	 */
-	private $store_db = null;
+	private $db = null;
 	
 	/**
      * 构造函数，获取数据库连接对象
@@ -30,7 +30,7 @@ class userInfo
         
         $this->app = $app;
         
-        $this->store_db = $app->orm($app->cfg['store_db'])->query();
+        $this->db = $app->orm($app->cfg['db'])->query();
 		
         mysql_query("set names utf8");
     }
@@ -43,13 +43,13 @@ class userInfo
      */
     public function getUserInfo()
 	{
-		if($this->store_db == null)
+		if($this->db == null)
 		{
     		return false;
     	}
 		
 		$sql = "SELECT user_id , user_name FROM admin_user";
-		$r   = $this->store_db->getArray($sql);
+		$r   = $this->db->getArray($sql);
 		
 		if($r === false){
     		return $this->_log(array( __CLASS__ . '.class.php line ' . __LINE__ , 'function '. __FUNCTION__ . ' sql execute false. sql = ' . $sql, date("Y-m-d H:i:s")));
@@ -77,7 +77,7 @@ class userInfo
 	 * @return array|bool
 	 */
 	public function findLogin($s_username,$s_password){
-		if($this->store_db == null){
+		if($this->db == null){
     		return false;
     	}
     		
@@ -92,8 +92,10 @@ class userInfo
 			return $this->_log(array( __CLASS__ . '.class.php line ' . __LINE__ , 'function '. __FUNCTION__ . 'password is empty. ' . $s_password, date("Y-m-d H:i:s")));
 		}
 		
-		$sql = "SELECT user_id,user_name,email,action_list,last_login,agency_id FROM admin_user WHERE user_name = '$s_username' AND password = '$s_password'";//echo $sql;die;
-		$res = $this->store_db->getRow($sql);
+		$sql = "SELECT * FROM hg_user WHERE username = '$s_username' AND password = '$s_password'";
+		//$sql = "SELECT user_id,user_name,email,action_list,last_login,agency_id FROM admin_user WHERE user_name = '$s_username' AND password = '$s_password'";
+		//echo $sql;die;
+		$res = $this->db->getRow($sql);
 		
 		if($res === false){
 			return $this->_log(array( __CLASS__ . '.class.php line ' . __LINE__ , 'function '. __FUNCTION__ . ' sql execute false. sql = ' . $sql, date("Y-m-d H:i:s")));
@@ -111,12 +113,12 @@ class userInfo
 	 * @return bool
 	 */
 	public function updateLoginInfo($i_userid, $s_ip) {
-		if($this->store_db == null){
+		if($this->db == null){
     		return false;
     	}
     	
     	$sql = "UPDATE admin_user SET last_login = ".time()." , last_ip = '".$s_ip."' WHERE user_id = $i_userid OR id = $i_userid";
-    	$res = $this->store_db->exec($sql);
+    	$res = $this->db->exec($sql);
     	
     	if($res === false) {
     		return $this->_log(array( __CLASS__ . '.class.php line ' . __LINE__ , 'function '. __FUNCTION__ . ' sql execute false. sql = ' . $sql, date("Y-m-d H:i:s")));

@@ -8,15 +8,13 @@
  */
 require_once('./common.inc.php');
 
-class user extends Action {
+class index extends Action {
 	
 	/**
 	 * 默认执行的方法(用户登录页面)
 	 */
 	public function doDefault(){	
-		$page = $this->app->page();
-		$page->params['template'] = 'login.php';
-		$page->output();
+		echo "111111111";
 	}
 	
 	/**
@@ -28,7 +26,7 @@ class user extends Action {
 		if(empty($this->s_sessionid)){
 			$this->app->redirect('user.php',0);
 		}
-	    print_r($_POST);die;
+	
 		import('util.Clean');
 		
 		//用户名

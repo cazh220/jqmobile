@@ -221,8 +221,8 @@ class Application {
 		$key = md5(serialize($params)); 
 		if (!isset($this->pool['orm'][$key])) {
 		    import('plugins.orm.OrmQuery');
-			($params === NULL) && $params = $this->cfg['db']['params'];
-			($options === NULL) && $options = $this->cfg['db']['options'];
+			($params === NULL) && $params = isset($this->cfg['db']['params']) ? $this->cfg['db']['params'] : array();
+			($options === NULL) && $options = isset($this->cfg['db']['options']) ? $this->cfg['db']['options'] : array();
 			$this->pool['orm'][$key] = new OrmQuery($params, $options);
 		}
 		
