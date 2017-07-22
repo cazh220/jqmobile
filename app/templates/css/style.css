@@ -20,6 +20,22 @@ a {
 	height:100px;
 	padding:10px;
 }
+.list_order{
+	height:100px;
+	padding:10px;
+	font-size:xx-small;
+}
+.list_order_success{
+	height:80px;
+	padding:10px;
+	font-size:xx-small;
+}
+.text_title{
+	vertical-align: super;
+}
+.order_content{
+	    font-weight: normal;
+}
 .pic_size{
 	width:120px;
 	height:100px;
@@ -35,6 +51,20 @@ a {
 }
 .buy_num_css{
 	padding: 0px 10px;
+}
+.title{
+	height:25px;
+}
+.vcode_button{
+    padding: 8px;
+    list-style: none;
+	height:35px;
+	background-color: teal;
+    color: #fff;
+}
+.content{
+	font-size:12px;
+	font-weight: normal;
 }
 
 *{text-decoration: none;margin: 0;padding: 0;list-style: none;}
