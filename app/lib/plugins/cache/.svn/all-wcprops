@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/4/trunk/stock.lyceem.com/lib/plugins/cache
+END
+Memcached.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/4/trunk/stock.lyceem.com/lib/plugins/cache/Memcached.class.php
+END
+eAcache.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/4/trunk/stock.lyceem.com/lib/plugins/cache/eAcache.class.php
+END
+FileCache.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/4/trunk/stock.lyceem.com/lib/plugins/cache/FileCache.class.php
+END

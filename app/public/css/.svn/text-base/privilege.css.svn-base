@@ -1,0 +1,9 @@
+@charset "utf-8";
+
+#main table tr{ height:33px;}
+#main table tr td.left{ text-align:left; padding-left:13px;}
+
+#main_up table{ width:520px; margin-left:auto; margin-right:auto;}
+#main_up table tr{ height:35px;}
+#main_up table tr td.label{ text-align:right; padding-right:20px; font-weight:bold;}
+#main_up table tr td span.require-field{ color:red;}

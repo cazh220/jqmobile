@@ -1,0 +1,37 @@
+<?php
+/**
+ * 配置文件－－主配置文件
+ * @package main
+ * @subpackage configure
+ * @author  崇<lonce@live.cn>
+ * @version 0.1 20090707
+ *
+ * $Id$
+ */
+
+//Memcache分组相关配置信息
+$cfg['memcache'] = array(
+array('host' => '192.168.1.206','port' => 10002),
+);
+
+//Memcacheq分组队列相关配置信息
+//$cfg['memcacheq'] = array(
+//       array('host' => '192.168.1.102','port' => 22201)
+//);
+
+//主数据库，默认连接该数据库
+$cfg['db'] = array('driver'=> 'mysql', 'host'=> '192.168.1.206', 'name'=> 'lyceem', 'user'=> 'lyceemtest','password'=> 'test@Mysql203');
+$cfg['store_db'] = array('driver'=> 'mysql', 'host'=> '192.168.1.203', 'name'=> 'stock', 'user'=> 'lyceemproduction','password'=> 'production@Mysql203');
+
+$cfg['prefix'] = 'ecs_';
+
+//主数据库，默认连接该数据库
+$cfg['lyceem'] = array('driver'=> 'mysql', 'host'=> '192.168.1.203', 'name'=> 'lyceem', 'user'=> 'lyceemproduction','password'=> 'production@Mysql203');
+
+//分表数据库bonus兑换日志数据库
+$cfg['bonus_log'] = array('driver'=> 'mysql', 'host'=> '192.168.1.203', 'name'=> 'bonus_log', 'user'=> 'lyceemproduction','password'=> 'production@Mysql203');
+
+//分表数据库活动数据库活动兑换记录
+$cfg['active_log'] = array('driver'=> 'mysql', 'host'=> '192.168.1.203', 'name'=> 'active_log', 'user'=> 'lyceemproduction','password'=> 'production@Mysql203');
+$cfg['union'] = array('driver'=> 'mysql', 'host'=> '192.168.1.203', 'name'=> 'lyceem_distribution', 'user'=> 'lyceemproduction','password'=> 'production@Mysql203');
+?>

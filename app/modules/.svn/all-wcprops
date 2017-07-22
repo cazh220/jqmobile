@@ -1,0 +1,137 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/1046/trunk/stock.lyceem.com/modules
+END
+StockInInfo.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/367/trunk/stock.lyceem.com/modules/StockInInfo.class.php
+END
+DistributorInfo.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/4/trunk/stock.lyceem.com/modules/DistributorInfo.class.php
+END
+GoodsInfo.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/777/trunk/stock.lyceem.com/modules/GoodsInfo.class.php
+END
+StockOutInfo.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/537/trunk/stock.lyceem.com/modules/StockOutInfo.class.php
+END
+CheckInfo.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/4/trunk/stock.lyceem.com/modules/CheckInfo.class.php
+END
+userInfo.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/4/trunk/stock.lyceem.com/modules/userInfo.class.php
+END
+ProductInfo.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/70/trunk/stock.lyceem.com/modules/ProductInfo.class.php
+END
+LogInfo.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/4/trunk/stock.lyceem.com/modules/LogInfo.class.php
+END
+CheckStockInfo.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/201/trunk/stock.lyceem.com/modules/CheckStockInfo.class.php
+END
+BatchInfo.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/126/trunk/stock.lyceem.com/modules/BatchInfo.class.php
+END
+StockInfo.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/1046/trunk/stock.lyceem.com/modules/StockInfo.class.php
+END
+SuppliersInfo.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/4/trunk/stock.lyceem.com/modules/SuppliersInfo.class.php
+END
+QualityInfo.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/147/trunk/stock.lyceem.com/modules/QualityInfo.class.php
+END
+AdminInfo.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/84/trunk/stock.lyceem.com/modules/AdminInfo.class.php
+END
+StockTransferInfo.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/70/trunk/stock.lyceem.com/modules/StockTransferInfo.class.php
+END
+StockCountInfo.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/698/trunk/stock.lyceem.com/modules/StockCountInfo.class.php
+END
+PricemonitorCheck.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/4/trunk/stock.lyceem.com/modules/PricemonitorCheck.class.php
+END
+LogSqs.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/70/trunk/stock.lyceem.com/modules/LogSqs.class.php
+END
+StockLockInfo.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/273/trunk/stock.lyceem.com/modules/StockLockInfo.class.php
+END
+ShelfInfo.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/597/trunk/stock.lyceem.com/modules/ShelfInfo.class.php
+END
+AgencyInfo.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/4/trunk/stock.lyceem.com/modules/AgencyInfo.class.php
+END
+CommodityAnalysisInfo.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/531/trunk/stock.lyceem.com/modules/CommodityAnalysisInfo.class.php
+END

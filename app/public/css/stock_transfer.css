@@ -1,0 +1,53 @@
+/* CSS Document */
+.clear{clear:both;}
+
+.stock_search{width:100%; margin:20px 0;}
+.stock_search_time{width:1300px; margin:0 auto; padding:20px; background:#FFF; border:1px solid #CCC;}
+.stock_search_time_title{height:30px; line-height:30px; color:#000; font-size:14px; margin-bottom:10px;}
+.stock_search_time_date{float:left; margin-right:20px; margin-left:20px;}
+.stock_search_time_date input{width:150px; height:20px; line-height:20px; font-size:12px; border:1px #CCC solid;}
+.stock_search_time_category{float:left; margin-right:20px;}
+.stock_search_time_category select{width:180px; height:30px; line-height:30px; font-size:12px; border:1px #CCC solid;}
+.stock_search_time_category_list{float:left; margin-right:20px;}
+.stock_search_time_category_list select{width:180px; height:30px; line-height:30px; font-size:12px; border:1px #CCC solid;}
+.stock_search_time_product{float:left; margin-right:20px;}
+.stock_search_time_product select{width:180px; height:30px; line-height:30px; font-size:12px; border:1px #CCC solid;}
+.stock_search_time_submit{float:left}
+.stock_search_goods_sn{float:left;margin-left:80px;}
+.stock_search_goods_sn_submit{float:left}
+
+.stock_search_channel{width:1300px; margin:0 auto; padding:20px; margin-top:20px; background:#FFF; border:1px solid #CCC;display:none}
+.stock_search_channel_title{height:30px; line-height:30px; color:#000; font-size:14px; margin-bottom:10px;}
+.stock_search_channel_date{float:left; margin-right:20px; margin-left:20px;}
+.stock_search_channel_date input{width:150px; height:20px; line-height:20px; font-size:12px; border:1px #CCC solid;}
+.stock_search_channel_date_2{float:left; margin-right:20px;}
+.stock_search_channel_date_2 input{width:150px; height:20px; line-height:20px; font-size:12px; border:1px #CCC solid;}
+.stock_search_channel_list{float:left; margin-right:20px;}
+.stock_search_channel_list select{width:180px; height:30px; line-height:30px; font-size:12px; border:1px #CCC solid;}
+.stock_search_channel_category{float:left; margin-right:20px;}
+.stock_search_channel_category select{width:180px; height:30px; line-height:30px; font-size:12px; border:1px #CCC solid;}
+.stock_search_channel_category_list{float:left; margin-right:20px;}
+.stock_search_channel_category_list select{width:180px; height:30px; line-height:30px; font-size:12px; border:1px #CCC solid;}
+.stock_search_channel_product{float:left; margin-right:20px;}
+.stock_search_channel_product select{width:180px; height:30px; line-height:30px; font-size:12px; border:1px #CCC solid;}
+
+.stock_main{width:100%; margin:20px 0;}
+.stock_main_list{width:1300px; margin:0 auto; padding:20px; background:#FFF; border:1px solid #CCC;}
+#stock_main_channel_tab{width:1200px; height:30px; margin:0 auto; margin-bottom:20px;}
+#stock_main_channel_tab ul{margin:0px; padding:0px; border:0px; list-style:none;}
+#stock_main_channel_tab ul li{float:left;  margin-left:1px; cursor:pointer;}
+#stock_main_channel_tab ul li a{display:block; width:80px; height:30px; line-height:30px; text-align:center; background:#2A7AD2; color:#FFF;}
+#stock_main_channel_tab ul li a:hover,#stock_main_channel_tab ul li a:focus,#stock_main_channel_tab ul li a:active{background:#2A7AD2; color:#FFF;}
+.list{width:1200px; margin:0 auto; border:2px solid #CCC;}
+.list_title{width:1200px; height:30px; background:#9BB7BF; font-weight:bold;}
+.list_title_cate{float:left; width:150px; height:30px; line-height:30px; text-align:center; overflow:hidden;}
+.list_title_size{float:left; width:50px; height:30px; line-height:30px; text-align:center; border-left:1px solid #CCC;}
+.list_title_color{float:left; width:50px; height:30px; line-height:30px; text-align:center; border-left:1px solid #CCC;}
+.list_title_sum{float:left; width:60px; height:30px; line-height:30px; text-align:center; border-left:1px solid #CCC;}
+.list_title_goods_sn{float:left; width:60px; height:30px; line-height:30px; text-align:center; border-left:1px solid #CCC;}
+.list_title_channel{float:left;}
+.list_title_channel ul{list-style:none; margin:0px; padding:0px;}
+.list_title_channel ul li{float:left; width:80px; height:30px; line-height:30px; text-align:center; border-left:1px solid #CCC;overflow: hidden;}
+.list_main{border-top:1px #CCC solid; width:1200px;}
+.stockInsert{width:60px; height:10px; line-height:10px;}
+

@@ -1,0 +1,17 @@
+@charset "utf-8";
+/* CSS Document */
+
+#main_up input , select { margin-right:10px;}
+#list { margin-top:10px;}
+.batch_code { cursor:pointer;}
+.null { cursor:pointer;}
+#new_add { float:right;}
+
+#db { display:none;}
+#batch_box { width:620px; padding:2px; background-color:#FFF; display:none;}
+#batch_box table { width:618px; border:0;}
+#batch_box table tr { height:30px;}
+
+.page a{
+text-decoration:underline;
+}

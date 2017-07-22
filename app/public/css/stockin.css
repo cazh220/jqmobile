@@ -1,0 +1,10 @@
+@charset "utf-8";
+/* CSS Document */
+
+#main_up { width:1000px;}
+#db { display:none;}
+#batch_box { width:620px; padding:2px; background-color:#FFF; display:none;}
+#batch_box table { width:618px; border:0;}
+#batch_box table tr { height:30px;}
+#main_up table tr { height:30px;}
+table#list_detail{width:100%;}

@@ -1,0 +1,50 @@
+@charset "utf-8";
+/*
+ 列表部分的样式
+ */
+.list-div {
+  width: 95%;
+  background: #EEF8F9;
+}
+
+.list-div table {
+  width: 100%;
+}
+
+.list-div th {
+  line-height: 24px;
+  background: #BBDDE5  url(../images/th_bg.gif) repeat-x;
+  white-space: nowrap;
+}
+
+.list-div td {
+  background: #FFF;
+  line-height: 22px;
+}
+
+.list-div td.first-cell{
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+.list-div input {
+  vertical-align: middle;
+}
+
+.list-div a:visited, .list-div a:link {
+  text-decoration: underline;
+  color: #192E32;
+}
+
+.list-div a:hover {
+  color: #9D7250;
+}
+
+.list-div input, list-div img {
+  vertical-align: middle;
+}
+
+.list-div .footer {
+  background: #F4FAFB;
+  text-align: right;
+}

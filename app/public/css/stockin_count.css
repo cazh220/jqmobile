@@ -1,0 +1,18 @@
+@charset "utf-8";
+
+#main_up input.button{
+	border-style:none;
+	border:1px solid #666;
+	height:22px; 
+	width:100px;
+	border-style:none; 
+	border:1px solid #003366; 
+	background-color:#EEE; 
+	margin-right:8px; 
+	color:#000;
+}
+
+#main #batch_link a{ text-decoration:underline;}
+
+#main #right{ width:100%;border:1px solid #999; text-align:center;} 
+	

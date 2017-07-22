@@ -1,0 +1,21 @@
+body{
+background-color:#F3F9FA;
+}
+
+.login{
+width:300px;
+height:130px;
+margin:auto;
+margin-top:18%;
+color:#3399FF;
+}
+.button{
+text-align:center;
+}
+.button input{
+color:#3399FF;
+/*width:160px;
+height:25px;
+background-image:url(../images/button_bg.jpg);*/
+}
+

@@ -1,0 +1,215 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515
+END
+agency.js
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/agency.js
+END
+commodity_nalysis_type.js
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/commodity_nalysis_type.js
+END
+stockout.js
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/stockout.js
+END
+selectzone.js
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/selectzone.js
+END
+util.js
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/util.js
+END
+nav.js
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/nav.js
+END
+stockexport.js
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/stockexport.js
+END
+check_admin.js
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/check_admin.js
+END
+stockin_confirm.js
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/stockin_confirm.js
+END
+purchase_confirm.js
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/purchase_confirm.js
+END
+common.js
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/common.js
+END
+add_text.js
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/add_text.js
+END
+commodity_nalysis_list.js
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/commodity_nalysis_list.js
+END
+jquery-1.4.2.min.js
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/jquery-1.4.2.min.js
+END
+check_agency.js
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/check_agency.js
+END
+jquery-1.6.4.min.js
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/jquery-1.6.4.min.js
+END
+stockout_list.js
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/stockout_list.js
+END
+stockin.js
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/stockin.js
+END
+purchase.js
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/purchase.js
+END
+distributor.js
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/distributor.js
+END
+tool.js
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/tool.js
+END
+tuihuo.js
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/tuihuo.js
+END
+colorselector.js
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/colorselector.js
+END
+stockin_count.js
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/stockin_count.js
+END
+stockout_admin.js
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/stockout_admin.js
+END
+jquery.messager.js
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/jquery.messager.js
+END
+stocklock_list.js
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/stocklock_list.js
+END
+stock_transfer.js
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/stock_transfer.js
+END
+stockout_confirm.js
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/stockout_confirm.js
+END
+stockallocate.js
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/stockallocate.js
+END
+stockcount.js
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/stockcount.js
+END
+stocklock.js
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/stocklock.js
+END
+stockout_lose.js
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/stockout_lose.js
+END
+jquery-ui-1.8rc3.custom.min.js
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/jquery-ui-1.8rc3.custom.min.js
+END
+supplier.js
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/70/trunk/stock.lyceem.com/public/jsv20120515/supplier.js
+END

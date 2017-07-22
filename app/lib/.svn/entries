@@ -1,0 +1,77 @@
+10
+
+dir
+1081
+https://svn.lyceem.com:8443/svn/trunk/stock.lyceem.com/lib
+https://svn.lyceem.com:8443/svn
+
+
+
+2012-06-11T07:33:11.174189Z
+85
+chenjun
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+461cf96d-9b6f-4d39-b360-487181ea3489
+
+smarty
+dir
+
+interface
+dir
+
+plugins
+dir
+
+core
+dir
+
+base.inc.php
+file
+
+
+
+
+2012-06-11T02:00:09.068883Z
+0447fd2432df077546c6ecb58b696f50
+2012-01-30T06:32:25.192072Z
+4
+ray
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6165
+
+util
+dir
+
