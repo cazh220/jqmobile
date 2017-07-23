@@ -6,10 +6,11 @@
 <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
 </head>
 <style>
+{literal}
 .to{
 	width: 100px;
 	height: 100px;
-	background-image: url('images/kl.jpg');
+	background-image: url('templates/images/kl.jpg');
 	background-size: cover;
 	display: block;
 	border-radius: 50px;
@@ -24,12 +25,9 @@
 .base_info{
 	padding:30px 0px;
 }
+{/literal}
 </style>
 <body>
-<?php
-var_dump($_POST);
-
-?>
 <div data-role="page" id="pageone">
   <div data-role="header"><a href="#" data-role="button" data-icon="arrow-l" data-rel="back">后退</a>
   <h1>会员中心</h1>
@@ -38,12 +36,12 @@ var_dump($_POST);
 
   <div data-role="content" data-theme="d">
     <div class="to"></div>
-	<div class="user_account">大力王</div>
-	<div class="base_info"><label style="margin-left:0px">已录入：50</label><label style="float:right">积分余额：10000</label></div>
+	<div class="user_account">{$user_list.realname}</div>
+	<div class="base_info"><label style="margin-left:0px">已录入：{$user_list.exchanged_credits}</label><label style="float:right">积分余额：{$user_list.left_credits}</label></div>
 	
 	<div style="height:40px"></div>
 	<ul data-role="listview">
-      <li><a href="card_record.php">录入查询</a></li>
+      <li><a href="user.php?do=RecordQuery">录入查询</a></li>
       <li><a href="#">质保卡积分录入</a></li>
     </ul>
 	<div style="height:80px"></div>

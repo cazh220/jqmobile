@@ -14,7 +14,11 @@ class index extends Action {
 	 * 默认执行的方法(用户登录页面)
 	 */
 	public function doDefault(){	
-		echo "111111111";
+		
+		$page = $this->app->page();
+		$page->value('user_list',$_SESSION);
+		$page->params['template'] = 'user.php';
+		$page->output();
 	}
 	
 	/**

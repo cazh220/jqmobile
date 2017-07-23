@@ -28,7 +28,7 @@ class user extends Action {
 		if(empty($this->s_sessionid)){
 			$this->app->redirect('user.php',0);
 		}
-	    print_r($_POST);die;
+	    
 		import('util.Clean');
 		
 		//用户名
@@ -45,7 +45,7 @@ class user extends Action {
 		$obj_user = new userInfo;
 
 		$res_login = $obj_user->findLogin($s_username,$s_password);
-
+		
 		if($res_login === false || !is_array($res_login)){
 			$this->_log(array( __CLASS__ . '.php line ' . __LINE__ , 'function '. __FUNCTION__ . ' result error : '.$res_login, date("Y-m-d H:i:s")));
 			exit(json_encode(array('status'=>false,'info'=>'您输入的帐号信息不正确！')));
@@ -73,6 +73,40 @@ class user extends Action {
 		$_SESSION['login_time']  = time();
 		
 		exit(json_encode(array('status'=>true,'info'=>'登录成功！')));
+	}
+
+	//录入查询
+	public function doRecordQuery()
+	{
+		$page = $this->app->page();
+		$page->params['template'] = 'card_record.php';
+		$page->output();
+	}
+
+	//忘记密码
+	public function doFindPwd()
+	{
+		$page = $this->app->page();
+		$page->params['template'] = 'findpwd.php';
+		$page->output();
+	}
+
+	//修改密码
+	public function doUpdatePwd()
+	{
+		$mobile = !empty($_POST['mobile']) ? trim($_POST['mobile']) : '';
+		$vcode  = !empty($_POST['vcode']) ? trim($_POST['vcode']) : '';
+		$pwd1   = !empty($_POST['password1']) ? trim($_POST['password1']) : '';
+		$pwd2   = !empty($_POST['password2']) ? trim($_POST['password2']) : '';
+
+		//确认密码是否一致
+		
+
+		//验证验证码是否一直
+		
+
+
+		print_r($_POST);
 	}
 }
 $app->run();
