@@ -118,6 +118,55 @@ class user extends Action {
 		$page->params['template'] = 'register.php';
 		$page->output();
 	}
+	
+	//验证手机
+	public function doValidateMobile()
+	{
+		$mobile = trim($_POST['mobile']);
+		$vcode  = trim($_POST['vcode']);
+		
+		importModule("SmsCode","class");
+		$obj_code = new SmsCode;
+		
+		$code = $obj_code->validate_code($mobile);
+		
+		if (!empty($code[0]['code']) && $code[0]['code'] == $vcode)
+		{
+			$page = $this->app->page();
+			$page->params['template'] = 'register_t.php';
+			$page->output();
+		}
+		else
+		{
+			echo "<script>history.back(-1);return false;</script>";
+		}
+	}
+	
+	//发短信息
+	public function doSendSms()
+	{
+		$mobile = trim($_GET['mobile']);
+		//生成验证码
+		import('util.Vcode');
+		$code = Vcode::generate_num();
+		//写入数据库
+		importModule("SmsCode","class");
+		$obj_code = new SmsCode;
+		$res = $obj_code->generate_code($mobile, $code);
+		
+		//调用接口发短信
+		if($res === true)
+		{
+			import('util.SendSms');
+			$result = SendSms::send_vcode($mobile, $code);
+			if ($result->returnstatus == 'Success')
+			{
+				echo "<script>alert('动态码已下发');</script>";
+			}
+			print_r($result);
+		}
+		
+	}
 }
 $app->run();
 	

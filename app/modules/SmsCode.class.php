@@ -3,7 +3,7 @@
  * 短信验证码
  */
  
-class Vcode
+class SmsCode
 {
 	/**
 	 * 应用程序对象
@@ -32,32 +32,33 @@ class Vcode
     }
 	
 	//生成短信验证码
-	public function generate_code()
+	public function generate_code($mobile, $code)
 	{
 		if($this->db == null)
 		{
     		return false;
     	}
+
+		$sql = "INSERT INTO hg_sms_code(mobile, code, update_time)VALUES($mobile, $code, NOW())";
+		$r = $this->db->exec($sql);
 		
-		$sql = "SELECT user_id , user_name FROM admin_user";
-		$r   = $this->db->getArray($sql);
-		
-		if($r === false){
+		if($r === false) {
     		return $this->_log(array( __CLASS__ . '.class.php line ' . __LINE__ , 'function '. __FUNCTION__ . ' sql execute false. sql = ' . $sql, date("Y-m-d H:i:s")));
     	}
 		
-		if(!is_array($r) || count($r) == 0)
+		return $r;
+	}
+	
+	//验证验证码是否正确
+	public function validate_code($mobile)
+	{
+		if($this->db == null)
 		{
-			return false;
-		}
-		
-		$ar_admin = array();
-		foreach($r as $v)
-		{
-			$ar_admin[$v['user_id']] = $v['user_name'];	
-		}
-		
-		return $ar_admin;
+    		return false;
+    	}
+		$sql = "SELECT code FROM hg_sms_code WHERE mobile = '".$mobile."' ORDER BY mid DESC LIMIT 1";
+		$result = $this->db->getArray($sql);
+		return $result;
 	}
 	
 

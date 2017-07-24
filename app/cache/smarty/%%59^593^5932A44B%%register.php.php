@@ -1,3 +1,5 @@
+<?php /* Smarty version 2.6.10, created on 2017-07-25 01:07:45
+         compiled from register.php */ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,26 +8,27 @@
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
 <script type="text/javascript">
-{literal}
+<?php echo '
 function send_sms()
 {
 	var mobile = $("#mobile").val();
-	if (mobile == '')
+	if (mobile == \'\')
 	{
 		alert("请输入手机号");
 		return false;
 	}
 	$.ajax({
 		url:"user.php?do=SendSms",
-		data:'mobile='+mobile,
-		method:'get',
-		dataType:'json',
+		data:\'mobile=\'+mobile,
+		method:\'get\',
+		dataType:\'json\',
 		success:function(msg){
 			
 		}
 	});
 }
-{/literal}
+'; ?>
+
 </script>
 </head>
 <body>
