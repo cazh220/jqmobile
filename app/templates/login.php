@@ -58,7 +58,7 @@
         <input type="password" name="password" id="password" placeholder="密码" autocomplete="off">
       
 		<input type="button" value="登录" onclick="login()">
-		<label style="margin-left:0px"><a href="user.php?do=findPwd" style="text-decoration:none;">忘记密码?</a></label><label style="float:right"><a href="#" style="text-decoration:none;">马上注册</a></label>
+		<label style="margin-left:0px"><a href="user.php?do=findPwd" style="text-decoration:none;">忘记密码?</a></label><label style="float:right"><a href="user.php?do=bind_mobile" style="text-decoration:none;">马上注册</a></label>
     </form>
   </div>
 </div>

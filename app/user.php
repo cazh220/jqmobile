@@ -108,6 +108,16 @@ class user extends Action {
 
 		print_r($_POST);
 	}
+	
+	//绑定手机
+	public function doBind_mobile()
+	{
+		import('util.RequestCurl');
+		
+		$page = $this->app->page();
+		$page->params['template'] = 'register.php';
+		$page->output();
+	}
 }
 $app->run();
 	

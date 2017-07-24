@@ -2,15 +2,15 @@
 <html>
 <head>
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="templates/css/style.css">
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
 </head>
 <body>
 
 <div data-role="page">
-  <div data-role="header" data-position="fixed"><a href="#" data-role="button" data-icon="arrow-l" data-rel="back">ºóÍË</a>
-  <h1>»áÔ±×¢²á</h1>
+  <div data-role="header" data-position="fixed"><a href="#" data-role="button" data-icon="arrow-l" data-rel="back">åŽé€€</a>
+  <h1>ä¼šå‘˜æ³¨å†Œ</h1>
   </div>
 
   <div data-role="content" data-theme="b">
@@ -20,15 +20,15 @@
 		
 		<table width="100%">
 			<tr>
-				<td width="100%" colspan="2"><input type="text" name="mobile" id="mobile" placeholder="ÊäÈëÊÖ»úºÅ"></td>
+				<td width="100%" colspan="2"><input type="text" name="mobile" id="mobile" placeholder="è¾“å…¥æ‰‹æœºå·"></td>
 			</tr>
 			<tr>
-				<td width="60%"><input type="text" name="vcode" id="vcode" placeholder="ÊäÈëÑéÖ¤Âë"></td>
-				<td width="40%" style="text-align:center"><input type="button" data-role="none" value="»ñÈ¡ÑéÖ¤Âë" class="vcode_button"></td>
+				<td width="60%"><input type="text" name="vcode" id="vcode" placeholder="è¾“å…¥éªŒè¯ç "></td>
+				<td width="40%" style="text-align:center"><input type="button" data-role="none" value="èŽ·å–éªŒè¯ç " class="vcode_button"></td>
 			</tr>
 		</table>
 
-		<input type="submit" value="ÏÂÒ»²½">
+		<input type="submit" value="ä¸‹ä¸€æ­¥">
     </form>
   </div>
 </div>
