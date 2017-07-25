@@ -69,6 +69,30 @@ class userInfo
 		return $ar_admin;
 	}
 	
+	//注册信息插入表中
+	public function insert_user($data)
+	{
+		if($this->db == null){
+    		return false;
+    	}
+
+		$sql  = "INSERT INTO hg_user(realname, password, user_type, email, company_name, company_addr, department, position, persons_num, head_img)VALUES('".$data['realname']."', '".md5($data['password'])."', '".$data['user_type']."', '".$data['email']."', '".$data['company_name']."','".$data['address']."', '','".$data['job']."', '".$data['employee_num']."', '".$data['pic']."')";
+		$res = $this->db->exec($sql);
+    	
+    	if($res === false) {
+    		return $this->_log(array( __CLASS__ . '.class.php line ' . __LINE__ , 'function '. __FUNCTION__ . ' sql execute false. sql = ' . $sql, date("Y-m-d H:i:s")));
+    	}
+    	
+    	if($res > 0 ){
+    		importModule('LogSqs');
+			
+			$logsqs=new LogSqs;
+    		return true;
+		}
+    	
+    	return false;
+	}
+	
 	/**
 	 * 登录查询
 	 * 

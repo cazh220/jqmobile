@@ -74,6 +74,61 @@ class user extends Action {
 		
 		exit(json_encode(array('status'=>true,'info'=>'登录成功！')));
 	}
+	
+	//注册
+	public function doRegister()
+	{
+		$realname = $_POST['realname'];
+		$pwd1	= $_POST['password1'];
+		$pwd2	= $_POST['password2'];
+		$user_type = $_POST['typer'];
+		$email = $_POST['email'];
+		$company_name = $_POST['company_name'];
+		$job = $_POST['job'];
+		$create_time = $_POST['create_time'];
+		$employee_num = $_POST['employee_num'];
+		$province = $_POST['province'];
+		$city = $_POST['city'];
+		$district = $_POST['district'];
+		$address = $_POST['address'];
+		$dec = $_POST['addinfo'];
+		$files = $_FILES['cfile'];
+		
+		
+		$name = time().'.jpg';
+		$file_path = "E:/jqmobi/jqmobile/app/public/upload/".$name;
+        
+		if(move_uploaded_file($_FILES['cfile']['tmp_name'], $file_path))
+		{
+			//插入基本信息
+			$data = array(
+				'realname'	=> $realname,
+				'password'	=> $pwd1,
+				'user_type'	=> $user_type=='techer' ? 1 :2,
+				'email'	    => $email,
+				'company_name'	=> $company_name,
+				'job'		=> $job,
+				'create_time' => $create_time,
+				'employee_num' => $employee_num,
+				'province'	=> $province,
+				'city'		=> $city,
+				'district'	=> $district,
+				'address' => $address,
+				'dec'	=> $dec,
+				'pic'	=> $name
+			); 
+			
+			importModule("userInfo","class");
+			$obj_user = new userInfo;
+			$obj_user->insert_user($data);
+		}
+		else 
+		{
+			echo json_encode(array('status'=>0, 'message'=>'failed'));
+		}
+		
+		//print_r($_FILES);print_r($_POST);die;
+	}
 
 	//录入查询
 	public function doRecordQuery()
@@ -130,6 +185,16 @@ class user extends Action {
 		
 		$code = $obj_code->validate_code($mobile);
 		
+		importModule("AreaInfo","class");
+		$obj_area = new AreaInfo;
+		$province = $obj_area->get_province();
+		
+		//获取 省份
+		$page = $this->app->page();
+		$page->value('province',$province);
+		$page->params['template'] = 'register_t.php';
+		$page->output();
+			/*
 		if (!empty($code[0]['code']) && $code[0]['code'] == $vcode)
 		{
 			$page = $this->app->page();
@@ -139,7 +204,15 @@ class user extends Action {
 		else
 		{
 			echo "<script>history.back(-1);return false;</script>";
-		}
+		}*/
+	}
+	
+	//协议
+	public function doViewXy()
+	{
+		$page = $this->app->page();
+		$page->params['template'] = 'xy.php';
+		$page->output();
 	}
 	
 	//发短信息

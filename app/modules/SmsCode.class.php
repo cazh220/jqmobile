@@ -39,7 +39,8 @@ class SmsCode
     		return false;
     	}
 
-		$sql = "INSERT INTO hg_sms_code(mobile, code, update_time)VALUES($mobile, $code, NOW())";
+		$sql = "INSERT INTO hg_sms_code(mobile, code, update_time)VALUES('".$mobile."', $code, NOW())";
+
 		$r = $this->db->exec($sql);
 		
 		if($r === false) {

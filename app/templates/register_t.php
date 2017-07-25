@@ -15,7 +15,7 @@
 
   <div data-role="content" data-theme="c">
 
-    <form method="post" action="find.php">
+    <form method="post" action="user.php?do=register" data-ajax="false" enctype="multipart/form-data">
 		
 		<table width="100%">
 			<tr>
@@ -60,19 +60,20 @@
 					<fieldset data-role="controlgroup" data-type="horizontal">
 						<label for="province">选择省：</label>
 						<select name="province" id="province">
-						  <option value="1">上海</option>
-						  <option value="2">江苏</option>
+						{if $province}
+							{foreach from=$province item=item key=key}
+							<option value="{$item.id}">{$item.name}</option>
+						    {/foreach}
+						{/if}
 						</select>
 
 						<label for="city">选择市：</label>
 						<select name="city" id="city">
-						  <option value="1">上海</option>
-						  <option value="2">南京</option>
+						  <option value="0">请选择</option>
 						</select>
 						<label for="district">选择区：</label>
 						<select name="district" id="district">
-						  <option value="1">黄浦区</option>
-						  <option value="2">杨浦区</option>
+						  <option value="0">请选择</option>
 						</select>
 					</fieldset>
 				</td>
@@ -81,25 +82,173 @@
 				<td width="100%" colspan="2"><input type="text" name="address" id="address" placeholder="详细地址"></td>
 			</tr>
 			<tr>
-				<td width="100%" colspan="2"><input type="file" name="file" id="file" value="单位图片"></td>
+				<td width="100%" colspan="2"><input type="file" name="cfile" id="cfile" value="单位图片"></td>
 			</tr>
 			<tr>
 				<td width="100%" colspan="2"><textarea name="addinfo" id="info" placeholder="单位介绍"></textarea></td>
 			</tr>
 			<tr>
-				<td width="100%" colspan="2">
-					<label for="agree">我已阅读并接受<a href="#" target="_blank">《用户注册协议》</a></label>
-					<input type="checkbox" name="agree" id="agree" value="agree">
+				<td width="20%" style="text-align:right">
+					<input type="checkbox" name="agree" id="agree" value="agree" style="zoom:200%;">
+					
+				</td>
+				<td width="80%" style="text-align:left">
+					我已阅读并接受<a href="user.php?do=ViewXy" style="text-decoration:none">《用户注册协议》</a>
+					
 				</td>
 			</tr>
 			
 			
 		</table>
 
-		<input type="submit" value="注册">
+		<input type="submit" id="register" value="注册" >
     </form>
   </div>
 </div>
+<script type="text/javascript">
+{literal}
+$("#province").change(function(){
+	var id = $(this).val();
+	$.ajax({
+		url:'area.php?do=getcity',
+		method:'get',
+		data:'province_id='+id,
+		dataType:'json',
+		success:function(msg){
+			var str = '<option value="0">请选择</option>';
+			if (msg.status==1)
+			{
+				$.each(msg.list, function(i, n){
+					str += "<option value='"+n.id+"'>"+n.name+"</option>";
+				});
+			}
+			$("#city").html(str);
+		}
+	});
+});
+$("#city").change(function(){
+	var id = $(this).val();
+	$.ajax({
+		url:'area.php?do=getdistrict',
+		method:'get',
+		data:'city_id='+id,
+		dataType:'json',
+		success:function(msg){
+			var str = '<option value="0">请选择</option>';
+			if (msg.status==1)
+			{
+				$.each(msg.list, function(i, n){
+					str += "<option value='"+n.id+"'>"+n.name+"</option>";
+				});
+			}
+			$("#district").html(str);
+		}
+	});
+});
 
+$("#register").click(function(){
+	
+	var agree = $("#agree").attr("checked");
+	if (typeof(agree)=="undefined")
+	{
+		alert("你还没有同意协议");
+		return false;
+	}
+	
+	
+	var realname = $("#realname").val();
+	if (realname == '')
+	{
+		alert("请填写真实姓名");
+		return false;
+	}
+	
+	var password1 = $("#password1").val();
+	if (password1 == '')
+	{
+		alert("请填写密码");
+		return false;
+	}
+	
+	var password2 = $("#password2").val();
+	if (password2 == '')
+	{
+		alert("请填写确认密码");
+		return false;
+	}
+	
+	if (password2 != password1)
+	{
+		alert("密码不一致");
+		return false;
+	}
+	
+	var email = $("#email").val();
+	if (email == '')
+	{
+		alert("请填写邮箱");
+		return false;
+	}
+	
+	var company_name = $("#company_name").val();
+	if (company_name == '')
+	{
+		alert("请填写单位名称");
+		return false;
+	}
+	
+	var job = $("#job").val();
+	if (job == '')
+	{
+		alert("请填写职位");
+		return false;
+	}
+	
+	var create_time = $("#create_time").val();
+	if (create_time == '')
+	{
+		alert("请填写成立时间");
+		return false;
+	}
+	
+	var employee_num = $("#employee_num").val();
+	if (employee_num == '')
+	{
+		alert("请填写员工数");
+		return false;
+	}
+	
+	var district = $("#district").val();
+	if (district == '')
+	{
+		alert("请选择省市区");
+		return false;
+	}
+	
+	var address = $("#address").val();
+	if (address == '')
+	{
+		alert("请填写地址");
+		return false;
+	}
+	
+	var file = $("#cfile").val();
+	if (file == '')
+	{
+		alert("请选择图片");
+		return false;
+	}
+	
+	var info = $("#info").val();
+	if (info == '')
+	{
+		alert("请填写单位介绍");
+		return false;
+	}
+
+});
+
+{/literal}
+</script>
 </body>
 </html>
