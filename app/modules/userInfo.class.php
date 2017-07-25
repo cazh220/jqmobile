@@ -87,10 +87,29 @@ class userInfo
     		importModule('LogSqs');
 			
 			$logsqs=new LogSqs;
-    		return true;
+    		//return true;
+    		return $this->db->getLastId();
 		}
     	
     	return false;
+	}
+
+	//获取会员信息
+	public function get_user_detail($user_id)
+	{
+		if($this->db == null){
+    		return false;
+    	}
+
+    	$sql = "SELECT * FROM hg_user WHERE user_id = ".$user_id;
+
+    	$res = $this->db->getArray($sql);
+
+    	if($res === false){
+			return $this->_log(array( __CLASS__ . '.class.php line ' . __LINE__ , 'function '. __FUNCTION__ . ' sql execute false. sql = ' . $sql, date("Y-m-d H:i:s")));
+		}
+		
+		return $res;
 	}
 	
 	/**
@@ -157,6 +176,30 @@ class userInfo
     	return false;
 	}
 	
+
+	//修改密码
+	public function update_pwd($mobile, $pwd)
+	{
+		if($this->db == null){
+    		return false;
+    	}
+    	
+    	$sql = "UPDATE hg_user SET password = '".$pwd."' WHERE mobile = $mobile";
+    	$res = $this->db->exec($sql);
+    	
+    	if($res === false) {
+    		return $this->_log(array( __CLASS__ . '.class.php line ' . __LINE__ , 'function '. __FUNCTION__ . ' sql execute false. sql = ' . $sql, date("Y-m-d H:i:s")));
+    	}
+    	
+    	if($res > 0 ){
+    		importModule('LogSqs');
+			
+			$logsqs=new LogSqs;
+    		return true;
+		}
+    	
+    	return false;
+	} 
 	
 	/**
 	 * 数据更新失败记录日志，并标识操作失败

@@ -1,0 +1,18 @@
+# LogFrom:E:/mobile/jqmobile/app/user.php LogSetPath:Debug/Query #
+
+INSERT INTO hg_user(realname, password, user_type, email, company_name, company_addr, department, position, persons_num, head_img)VALUES('caozheng', '96e79218965eb72c92a549dd5a330112', '2', 'postmaster@live.cn', '东方饭店','万达', '','医师', '111', '1500998754.jpg');
+SELECT * FROM hg_user WHERE user_id = 24;
+SELECT * FROM hg_user WHERE user_id = 24;
+SELECT * FROM hg_user WHERE user_id = 24;
+SELECT * FROM hg_user WHERE user_id = 24;
+SELECT * FROM hg_user WHERE user_id = 24;
+SELECT * FROM hg_user WHERE user_id = 24;
+SELECT * FROM hg_user WHERE user_id = 24;
+SELECT * FROM hg_user WHERE user_id = 24;
+SELECT * FROM hg_user WHERE user_id = 24;
+SELECT * FROM hg_user WHERE user_id = 24;
+SELECT * FROM hg_user WHERE user_id = 24;
+SELECT * FROM hg_user WHERE user_id = 24;
+SELECT * FROM hg_user WHERE user_id = 24;
+SELECT * FROM hg_user WHERE user_id = 24;
+SELECT * FROM hg_user WHERE user_id = 24;

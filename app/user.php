@@ -96,7 +96,7 @@ class user extends Action {
 		
 		
 		$name = time().'.jpg';
-		$file_path = "E:/jqmobi/jqmobile/app/public/upload/".$name;
+		$file_path = "E:/mobile/jqmobile/app/public/upload/".$name;
         
 		if(move_uploaded_file($_FILES['cfile']['tmp_name'], $file_path))
 		{
@@ -120,14 +120,52 @@ class user extends Action {
 			
 			importModule("userInfo","class");
 			$obj_user = new userInfo;
-			$obj_user->insert_user($data);
+			$user_id = $obj_user->insert_user($data);
+
+			if ($user_id) {
+				header('Location: user.php?do=ucenter&user_id='.$user_id);
+			}
 		}
 		else 
 		{
 			echo json_encode(array('status'=>0, 'message'=>'failed'));
 		}
 		
-		//print_r($_FILES);print_r($_POST);die;
+	}
+
+	//用户中心
+	public function doUcenter()
+	{
+		$user_id = $_GET['user_id'];
+		importModule("userInfo","class");
+		$obj_user = new userInfo;
+
+		$user = $obj_user->get_user_detail($user_id);
+
+		$page = $this->app->page();
+		$page->value('user',$user[0]);
+		$page->params['template'] = 'user.php';
+		$page->output();
+	}
+
+	//质保卡积分录入
+	public function doPatientIn()
+	{
+		$user_id = $_GET['user_id'];
+		$page = $this->app->page();
+		//$page->value('user',$user[0]);
+		$page->params['template'] = 'patient.php';
+		$page->output();
+	}
+
+	//医生录入
+	public function doDoctorIn()
+	{
+		$user_id = $_GET['user_id'];
+		$page = $this->app->page();
+		//$page->value('user',$user[0]);
+		$page->params['template'] = 'doctor.php';
+		$page->output();
 	}
 
 	//录入查询
@@ -154,14 +192,17 @@ class user extends Action {
 		$pwd1   = !empty($_POST['password1']) ? trim($_POST['password1']) : '';
 		$pwd2   = !empty($_POST['password2']) ? trim($_POST['password2']) : '';
 
-		//确认密码是否一致
+		//验证验证码
+		//todo
+
+		importModule("userInfo","class");
+		$obj_user = new userInfo;
+		$res = $obj_user->update_pwd($mobile, $pwd1);
 		
+		if ($res) {
+			header('Location: user.php?do=ucenter&user_id='.$user_id);
+		}
 
-		//验证验证码是否一直
-		
-
-
-		print_r($_POST);
 	}
 	
 	//绑定手机

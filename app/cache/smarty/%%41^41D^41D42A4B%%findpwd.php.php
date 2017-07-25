@@ -1,3 +1,5 @@
+<?php /* Smarty version 2.6.10, created on 2017-07-26 00:55:53
+         compiled from findpwd.php */ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,41 +44,42 @@
   </div>
 </div>
 <script type="text/javascript">
-{literal}
+<?php echo '
 function check()
 {
 	var mobile = $("#mobile").val();
-	if (mobile == '') {
-		alert('请填写手机号');
+	if (mobile == \'\') {
+		alert(\'请填写手机号\');
 		return false;
 	}
 
 	var code = $("#vcode").val();
-	if (code == '') {
-		alert('请填写验证码');
+	if (code == \'\') {
+		alert(\'请填写验证码\');
 		return false;
 	}
 
 	var password1 = $("#password1").val();
-	if (password1 == '') {
-		alert('请填写密码');
+	if (password1 == \'\') {
+		alert(\'请填写密码\');
 		return false;
 	}
 
 	var password2 = $("#password2").val();
-	if (password2 == '') {
-		alert('请填写确认密码');
+	if (password2 == \'\') {
+		alert(\'请填写确认密码\');
 		return false;
 	}
 
 	if (password2 != password1) {
-		alert('密码不一致');
+		alert(\'密码不一致\');
 		return false;
 	}
 
 	return true;
 }
-{/literal}
+'; ?>
+
 </script>
 </body>
 </html>
