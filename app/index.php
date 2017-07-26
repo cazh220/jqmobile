@@ -16,7 +16,8 @@ class index extends Action {
 	public function doDefault(){	
 		
 		$page = $this->app->page();
-		$page->value('user_list',$_SESSION);
+		//print_r($_SESSION);die;
+		$page->value('user',$_SESSION);
 		$page->params['template'] = 'user.php';
 		$page->output();
 	}
