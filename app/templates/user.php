@@ -41,7 +41,7 @@
 	
 	<div style="height:40px"></div>
 	<ul data-role="listview">
-      <li><a href="user.php?do=recordquery">录入查询</a></li>
+      <li><a href="member.php">录入查询</a></li>
       {if $user.user_type==1}
       <li><a href="user.php?do=patientin&user_id={$user.user_id}">质保卡积分录入</a></li>
       {else}

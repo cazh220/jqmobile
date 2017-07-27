@@ -28,7 +28,6 @@ class user extends Action {
 		if(empty($this->s_sessionid)){
 			$this->app->redirect('user.php',0);
 		}
-	    
 		import('util.Clean');
 		
 		//用户名
@@ -58,10 +57,10 @@ class user extends Action {
 		//获取客户端Ip
 		import('util.Ip','class');
 		$obj_ip = new Ip;
-		
+
 		//登录成功更新最后登录时间和IP
 		$res = $obj_user->updateLoginInfo($res_login['user_id'],$obj_ip->get());
-		
+
 		if ($res === false) {
 			$this->_log(array( __CLASS__ . '.php line ' . __LINE__ , 'function '. __FUNCTION__ . ' update is fail : '.$res, date("Y-m-d H:i:s")));
 		}
