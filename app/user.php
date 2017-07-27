@@ -57,7 +57,7 @@ class user extends Action {
 		//获取客户端Ip
 		import('util.Ip','class');
 		$obj_ip = new Ip;
-
+		
 		//登录成功更新最后登录时间和IP
 		$res = $obj_user->updateLoginInfo($res_login['user_id'],$obj_ip->get());
 
@@ -279,6 +279,17 @@ class user extends Action {
 			print_r($result);
 		}
 		
+	}
+	
+	/**
+	 * 数据更新失败记录日志，并标识操作失败
+	 *
+	 * @param Array $data
+	 * @return false
+	 */
+	private function _log($data){
+	    $log = $this->app->log(); 
+	    $log->reset()->setPath("user")->setData($data)->write();	
 	}
 }
 $app->run();
