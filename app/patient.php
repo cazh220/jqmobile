@@ -43,37 +43,33 @@ class patient extends Action {
 		{
 			//插入基本信息
 			$data = array(
-			'name'	=> $patient_name,
-			'sex'   => $sex,
-			'birthday' => $patient_age,
-			'hospital' => $hospital,
-			'doctor' => $doctor,
-			'tooth_position' => $tooth_position,
-			'production_unit' => $production_unit,
-			'create_time' => $create_time,
-			'operator' => $recorder,
-			'false_tooth' => $repaire_type,
-			'repaire_pic' => $name
-		);
-			/*
-			importModule("userInfo","class");
-			$obj_user = new userInfo;
-			$user_id = $obj_user->insert_user($data);
+				'name'	=> $patient_name,
+				'sex'   => $sex,
+				'birthday' => $patient_age,
+				'hospital' => $hospital,
+				'doctor' => $doctor,
+				'tooth_position' => $tooth_position,
+				'production_unit' => $production_unit,
+				'create_time' => $create_time,
+				'operator' => $recorder,
+				'false_tooth' => $repaire_type,
+				'repaire_pic' => $name
+			);
+	
+			importModule("PatientInfo","class");
+			$obj_patient = new PatientInfo;
+			$res = $obj_patient->insert_patient($data);
 
-			if ($user_id) {
+			if ($res) {
 				header('Location: user.php?do=ucenter&user_id='.$user_id);
 			}
-			*/
+			
 		}
 		else 
 		{
 			echo json_encode(array('status'=>0, 'message'=>'failed'));
 		}
 
-		var_dump($data);die;
-
-		print_r($data);
-		print_r($_FILES);die;
 	}
 
 	

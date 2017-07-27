@@ -1,0 +1,6 @@
+# LogFrom:E:/mobile/jqmobile/app/user.php LogSetPath:Debug/Query #
+
+SELECT * FROM hg_user WHERE username = 'caozheng' AND password = '96e79218965eb72c92a549dd5a330112' LIMIT 1;
+UPDATE hg_user SET last_login = 1501169866 , last_ip = '127.0.0.1' WHERE user_id = 24;
+INSERT INTO hg_user(realname, password, user_type, email, company_name, company_addr, department, position, persons_num, head_img)VALUES('', 'd41d8cd98f00b204e9800998ecf8427e', '', '', '','', '','', '', '');
+SELECT * FROM hg_user WHERE user_id = 25;

@@ -1,3 +1,5 @@
+<?php /* Smarty version 2.6.10, created on 2017-07-28 00:09:25
+         compiled from patient.php */ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +51,7 @@
   </div>
 </div>
 <script type="text/javascript">
-{literal}
+<?php echo '
 function dodubmit()
 {
   $("#patient_form").submit();
@@ -59,7 +61,8 @@ function doreset()
 {
   $("#patient_form").reset();
 }
-{/literal}
+'; ?>
+
 </script>
 </body>
 </html>
