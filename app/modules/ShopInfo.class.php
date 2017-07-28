@@ -52,6 +52,29 @@ class ShopInfo
 		
 		return $res;
     }
+    
+    //获取商品列表详情
+    public function get_product_list($id='')
+    {
+    	if($this->db == null)
+		{
+    		return false;
+    	}
+    	
+    	$res = array();
+    	if($id)
+    	{
+    		$sql = "SELECT * FROM hg_gift WHERE is_delete = 0 AND gift_id IN ($id)";
+    		
+    		$res = $this->db->getArray($sql);
+
+	    	if($res === false){
+				return $this->_log(array( __CLASS__ . '.class.php line ' . __LINE__ , 'function '. __FUNCTION__ . ' sql execute false. sql = ' . $sql, date("Y-m-d H:i:s")));
+			}
+    	}
+    	
+    	return $res;
+    }
 	
 	
 	/**

@@ -20,6 +20,21 @@ $(function(){
 		var id = $(this).data('id');
 		console.log(id);
 	});
+	
+	$("#exchange").click(function(){
+		var arr = new Array();
+		var id;
+		$(".goods_check").each(function(i,n){
+			var check = $(this).attr("checked");
+			if (check == 'checked')
+			{
+				arr.push($(this).val());
+			}
+			id = arr.join(',');
+		});
+
+		window.location.href="/order.php?do=orderconfirm&id="+id;
+	});
 });
 {/literal}
 </script>
@@ -41,7 +56,7 @@ $(function(){
 			<div style="text-align:center; padding:10px"><img src="images/kl.jpg" width="150px" height="120px">
 				<div class="product">产品名称：{$item.gift_name}</div>
 				<div class="product">产品规则：{$item.stanard}</div>
-				<div class="product">兑换积分：{$item.credits}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" data-id="{$item.gift_id}"  class="add_to_cart">兑换</a></div>
+				<div class="product">兑换积分：{$item.credits}&nbsp;&nbsp;&nbsp;<input type="checkbox" class="goods_check" value="{$item.gift_id}"><a href="#" data-id="{$item.gift_id}"  class="add_to_cart">选择</a></div>
 			</div>
 		 </div>
 		{/foreach}
@@ -60,7 +75,7 @@ $(function(){
 			<li><a href="#">Two</a></li>
 		</ul>
 	</div>-->
-	<div style="line-height:40px; font-size:12px; width:60%; float:left;">可用积分：9999  兑换所需积分：1000</div><div style="line-height:40px; float:left; width:40%; text-align:center; background-color:#FF7F00">立即兑换</div>
+	<div style="line-height:40px; font-size:12px; width:60%; float:left;">可用积分：9999  兑换所需积分：1000</div><div id="exchange" style="line-height:40px; float:left; width:40%; text-align:center; background-color:#FF7F00">立即兑换</div>
   </div>
   
     <!--<div data-role="footer" data-position="fixed">

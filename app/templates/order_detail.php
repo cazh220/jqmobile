@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>ÌîĞ´¶©µ¥</title>
+<title>å¡«å†™è®¢å•</title>
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
 <link rel="stylesheet" href="css/style.css">
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
 </head>
 <script type="text/javascript">
+{literal}
 function plus()
 {
 	var num = $("#buy_num").html();
@@ -27,12 +28,13 @@ function subplus()
 	}
 	$("#buy_num").html(num);
 }
+{/literal}
 </script>
 <body>
 
 <div data-role="page">
-  <div data-role="header" data-position="fixed"><a href="#" data-role="button" data-icon="arrow-l" data-rel="back">ºóÍË</a>
-  <h1>ÌîĞ´¶©µ¥</h1>
+  <div data-role="header" data-position="fixed"><a href="#" data-role="button" data-icon="arrow-l" data-rel="back">åé€€</a>
+  <h1>å¡«å†™è®¢å•</h1>
   </div>
   
 
@@ -40,24 +42,16 @@ function subplus()
     <div class="blank"></div>
     <form method="post" action="demoform.asp">
 		<ul data-role="listview">
+			{if $list}
+			{foreach from=$list item=item key=key}
 			<li>
 				<div class="list_product">
-					<div class="list_pic"><img src="images/kl.jpg" class="pic_size"></div>
-					<div class="attr">²úÆ·Ãû³Æ£º¿¼À­<br> ²úÆ·¹æ¸ñ£º100cm<br> ¶Ò»»»ı·Ö£º10000<br> ÊıÁ¿£º<span class="buy_num_css" onclick="subplus()"><img src="images/subplus.png" width="20px" height="20px" style="vertical-align: middle;"></span><span id="buy_num">1</span><span class="buy_num_css" onclick="plus()"><img src="images/plus.png" width="20px" height="20px" style="vertical-align: middle;"></span></div>
+					<div class="list_pic"><img src="E:\jqmobi\jqmobile\app\public\upload\{$item.gift_photo}" class="pic_size"></div>
+					<div class="attr">äº§å“åç§°ï¼š{$item.gift_name}<br> äº§å“è§„æ ¼ï¼š{$item.gift_intro}<br> å…‘æ¢ç§¯åˆ†ï¼š{$item.credits}<br> æ•°é‡ï¼š<span class="buy_num_css" onclick="subplus()"><img src="images/subplus.png" width="20px" height="20px" style="vertical-align: middle;"></span><span id="buy_num">1</span><span class="buy_num_css" onclick="plus()"><img src="images/plus.png" width="20px" height="20px" style="vertical-align: middle;"></span></div>
 				</div>
 			</li>
-			<li>
-				<div class="list_product">
-					<div class="list_pic"><img src="images/kl.jpg" class="pic_size"></div>
-					<div class="attr">²úÆ·Ãû³Æ£º¿¼À­<br> ²úÆ·¹æ¸ñ£º100cm<br> ¶Ò»»»ı·Ö£º10000<br> ÊıÁ¿£º<span class="buy_num_css" onclick="subplus()"><img src="images/subplus.png" width="20px" height="20px" style="vertical-align: middle;"></span><span id="buy_num">1</span><span class="buy_num_css" onclick="plus()"><img src="images/plus.png" width="20px" height="20px" style="vertical-align: middle;"></span></div>
-				</div>
-			</li>
-			<li>
-				<div class="list_product">
-					<div class="list_pic"><img src="images/kl.jpg" class="pic_size"></div>
-					<div class="attr">²úÆ·Ãû³Æ£º¿¼À­<br> ²úÆ·¹æ¸ñ£º100cm<br> ¶Ò»»»ı·Ö£º10000<br> ÊıÁ¿£º<span class="buy_num_css" onclick="subplus()"><img src="images/subplus.png" width="20px" height="20px" style="vertical-align: middle;"></span><span id="buy_num">1</span><span class="buy_num_css" onclick="plus()"><img src="images/plus.png" width="20px" height="20px" style="vertical-align: middle;"></span></div>
-				</div>
-			</li>
+			{/foreach}
+			{/if}
 			
 		</ul>
 		
@@ -66,16 +60,16 @@ function subplus()
 		<div class="blank"></div>
 		<div class="blank"></div>
 		<ul data-role="listview">
-			<li><table width="100%"><tr><td>ÊÕ»õÈËĞÅÏ¢£º</td><td><input type="text" name="receiver" id="receiver" value="" data-min="true" placeholder="Ä¬ÈÏ»áÔ±ĞÅÏ¢"></td></tr>
-			<tr><td>ÊÕ»õµç»°£º</td><td><input type="text" name="mobile" id="mobile" value="" data-min="true" placeholder="Ä¬ÈÏ»áÔ±ÊÖ»úºÅ"></td></tr>
-			<tr><td>ÊÕ»õµØÖ·£º</td><td><input type="text" name="receiver" id="receiver" value="" data-min="true" placeholder="Ä¬ÈÏµ¥Î»µØÖ·"></td></tr></table></li>
+			<li><table width="100%"><tr><td>æ”¶è´§äººä¿¡æ¯ï¼š</td><td><input type="text" name="receiver" id="receiver" value="" data-min="true" placeholder="é»˜è®¤ä¼šå‘˜ä¿¡æ¯"></td></tr>
+			<tr><td>æ”¶è´§ç”µè¯ï¼š</td><td><input type="text" name="mobile" id="mobile" value="" data-min="true" placeholder="é»˜è®¤ä¼šå‘˜æ‰‹æœºå·"></td></tr>
+			<tr><td>æ”¶è´§åœ°å€ï¼š</td><td><input type="text" name="receiver" id="receiver" value="" data-min="true" placeholder="é»˜è®¤å•ä½åœ°å€"></td></tr></table></li>
 		</ul>
       
     </form>
   </div>
   
   <div data-role="footer" data-position="fixed">
-    <div style="line-height:40px; float:left; width:100%; text-align:center; background-color:#FF7F00">Á¢¼´¶Ò»»</div>
+    <div style="line-height:40px; float:left; width:100%; text-align:center; background-color:#FF7F00">ç«‹å³å…‘æ¢</div>
   </div>
   
 </div>

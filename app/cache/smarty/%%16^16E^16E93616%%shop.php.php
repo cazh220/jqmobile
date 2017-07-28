@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.10, created on 2017-07-28 01:06:16
+<?php /* Smarty version 2.6.10, created on 2017-07-28 15:46:46
          compiled from shop.php */ ?>
 <!DOCTYPE html>
 <html>
@@ -21,6 +21,21 @@ $(function(){
 	$(".add_to_cart").click(function(){
 		var id = $(this).data(\'id\');
 		console.log(id);
+	});
+	
+	$("#exchange").click(function(){
+		var arr = new Array();
+		var id;
+		$(".goods_check").each(function(i,n){
+			var check = $(this).attr("checked");
+			if (check == \'checked\')
+			{
+				arr.push($(this).val());
+			}
+			id = arr.join(\',\');
+		});
+
+		window.location.href="/order.php?do=orderconfirm&id="+id;
 	});
 });
 '; ?>
@@ -49,8 +64,9 @@ $(function(){
 				<div class="product">产品规则：<?php echo $this->_tpl_vars['item']['stanard']; ?>
 </div>
 				<div class="product">兑换积分：<?php echo $this->_tpl_vars['item']['credits']; ?>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" data-id="<?php echo $this->_tpl_vars['item']['gift_id']; ?>
-"  class="add_to_cart">兑换</a></div>
+&nbsp;&nbsp;&nbsp;<input type="checkbox" class="goods_check" value="<?php echo $this->_tpl_vars['item']['gift_id']; ?>
+"><a href="#" data-id="<?php echo $this->_tpl_vars['item']['gift_id']; ?>
+"  class="add_to_cart">选择</a></div>
 			</div>
 		 </div>
 		<?php endforeach; endif; unset($_from); ?>
@@ -69,7 +85,7 @@ $(function(){
 			<li><a href="#">Two</a></li>
 		</ul>
 	</div>-->
-	<div style="line-height:40px; font-size:12px; width:60%; float:left;">可用积分：9999  兑换所需积分：1000</div><div style="line-height:40px; float:left; width:40%; text-align:center; background-color:#FF7F00">立即兑换</div>
+	<div style="line-height:40px; font-size:12px; width:60%; float:left;">可用积分：9999  兑换所需积分：1000</div><div id="exchange" style="line-height:40px; float:left; width:40%; text-align:center; background-color:#FF7F00">立即兑换</div>
   </div>
   
     <!--<div data-role="footer" data-position="fixed">
