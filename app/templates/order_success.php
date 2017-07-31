@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>¶©µ¥Íê³É</title>
+<title>è®¢å•å®Œæˆ</title>
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="templates/css/style.css">
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
 </head>
 <body>
 
 <div data-role="page">
-  <div data-role="header" data-position="fixed"><a href="#" data-role="button" data-icon="arrow-l" data-rel="back">ºóÍË</a>
-  <h1>¶©µ¥ÏêÇé</h1>
+  <div data-role="header" data-position="fixed"><a href="#" data-role="button" data-icon="arrow-l" data-rel="back">åŽé€€</a>
+  <h1>è®¢å•è¯¦æƒ…</h1>
   </div>
   
 
@@ -21,20 +21,8 @@
 		<ul data-role="listview">
 			<li>
 				<div class="list_order_success">
-					<div class="title"><img src="images/fill_finish.png" width="20px" height="20px"><span class="text_title">2017-07-20 15:30:11 ÄúµÄ¶©µ¥£¨¶©µ¥ºÅ£º123456789£©</span></div>
-					<div class="order_content">»¦¸ëË«¼ç±³°ü£¬ÊýÁ¿1£¬ÒÑ³É¹¦Ìá½»£»¿Û³ý»ý·Ö99£¬µ±Ç°¿ÉÓÃ»ý·Ö9900£»»ý·ÖÐÅÏ¢ÇëÇ°Íù»áÔ±ÖÐÐÄ²é¿´</div>
-				</div>
-			</li>
-			<li>
-				<div class="list_order_success">
-					<div class="title"><img src="images/fill_finish.png" width="20px" height="20px"><span class="text_title">2017-07-20 15:30:11 ÄúµÄ¶©µ¥£¨¶©µ¥ºÅ£º123456789£©</span></div>
-					<div class="order_content">»¦¸ëË«¼ç±³°ü£¬ÊýÁ¿1£¬ÒÑ³É¹¦Ìá½»£»¿Û³ý»ý·Ö99£¬µ±Ç°¿ÉÓÃ»ý·Ö9900£»»ý·ÖÐÅÏ¢ÇëÇ°Íù»áÔ±ÖÐÐÄ²é¿´</div>
-				</div>
-			</li>
-			<li>
-				<div class="list_order_success">
-					<div class="title"><img src="images/fill_finish.png" width="20px" height="20px"><span class="text_title">2017-07-20 15:30:11 ÄúµÄ¶©µ¥£¨¶©µ¥ºÅ£º123456789£©</span></div>
-					<div class="order_content">»¦¸ëË«¼ç±³°ü£¬ÊýÁ¿1£¬ÒÑ³É¹¦Ìá½»£»¿Û³ý»ý·Ö99£¬µ±Ç°¿ÉÓÃ»ý·Ö9900£»»ý·ÖÐÅÏ¢ÇëÇ°Íù»áÔ±ÖÐÐÄ²é¿´</div>
+					<div class="title"><img src="templates/images/fill_finish.png" width="20px" height="20px"><span class="text_title">{$info.create_time}æ‚¨çš„è®¢å•ï¼ˆè®¢å•å·ï¼š{$info.order_no}ï¼‰</span></div>
+					<div class="order_content">{$info.info}å·²æˆåŠŸæäº¤ï¼›æ‰£é™¤ç§¯åˆ†{$info.total_credits}ï¼Œå½“å‰å¯ç”¨ç§¯åˆ†{$info.left_credits}ï¼›ç§¯åˆ†ä¿¡æ¯è¯·å‰å¾€ä¼šå‘˜ä¸­å¿ƒæŸ¥çœ‹</div>
 				</div>
 			</li>
 			

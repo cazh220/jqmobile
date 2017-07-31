@@ -51,7 +51,7 @@
     </ul>
 	<div style="height:80px"></div>
 	<ul data-role="listview">
-      <li><a href="order.php?do=myorder">我的订单</a></li>
+      <li><a href="order.php?do=myorder" data-ajax="false">我的订单</a></li>
       <li><a href="score.php?do=exchange">积分兑换</a></li>
     </ul>
 	

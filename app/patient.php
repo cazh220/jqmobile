@@ -61,7 +61,7 @@ class patient extends Action {
 			$res = $obj_patient->insert_patient($data);
 
 			if ($res) {
-				header('Location: user.php?do=ucenter&user_id='.$user_id);
+				header('Location: patient.php?do=recordsuccess&user_id=');
 			}
 			
 		}
@@ -70,6 +70,15 @@ class patient extends Action {
 			echo json_encode(array('status'=>0, 'message'=>'failed'));
 		}
 
+	}
+	
+	//录入成功
+	public function doRecordSuccess()
+	{
+		$page = $this->app->page();
+		$page->value('user',$_SESSION);
+		$page->params['template'] = 'card_success.php';
+		$page->output();
 	}
 
 	

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>¶©µ¥Íê³É</title>
+<title>è®¢å•å®Œæˆ</title>
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
 <link rel="stylesheet" href="css/style.css">
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
@@ -30,14 +30,14 @@
 <body>
 
 <div data-role="page">
-  <div data-role="header" data-position="fixed"><a href="#" data-role="button" data-icon="arrow-l" data-rel="back">ºóÍË</a>
-  <h1>¶©µ¥ÏêÇé</h1>
-  <a href="#popupMenu" data-rel="popup" data-transition="slideup" data-icon="gear">Ñ¡Ïî</a>
+  <div data-role="header" data-position="fixed"><a href="#" data-role="button" data-icon="arrow-l" data-rel="back">åé€€</a>
+  <h1>è®¢å•è¯¦æƒ…</h1>
+  <a href="#popupMenu" data-rel="popup" data-transition="slideup" data-icon="gear">é€‰é¡¹</a>
   <div data-role="popup" id="popupMenu" data-theme="b">
 	<ul data-role="listview" data-inset="true" style="min-width:20px">
-		<li data-role="list-divider">ÇëÑ¡Ôñ</li>
-		<li><a href="#" onclick="share()">Î¢ĞÅ</a></li>
-		<li><a href="#">Î¢²©</a></li>
+		<li data-role="list-divider">è¯·é€‰æ‹©</li>
+		<li><a href="#" onclick="share()">å¾®ä¿¡</a></li>
+		<li><a href="#">å¾®åš</a></li>
 	</ul>
   </div>
   </div>
@@ -47,23 +47,23 @@
     <ul data-role="listview">
 		<li>
 			<div class="to"></div>
-			<div class="user_account">´ó**</div>
-			<div class="user_account">ÃÀ¾§´ÉÑõ»¯ï¯Òå³İ</div>
+			<div class="user_account">å¤§**</div>
+			<div class="user_account">ç¾æ™¶ç“·æ°§åŒ–é”†ä¹‰é½¿</div>
 		</li>
 		
 	</ul>
 	<ul data-role="listview">
 		<li>
-			<div><h4>Ò½ÁÆ»ú¹¹Ãû³Æ</h4></div>
-			<div class="content">»¦¸ë¿ÚÇ»</div>
+			<div><h4>åŒ»ç–—æœºæ„åç§°</h4></div>
+			<div class="content">æ²ªé¸½å£è…”</div>
 			<div><img src="images/kl.jpg" width="400px" height="300px"></div>
 		</li>
 		
 	</ul>
 	<ul data-role="listview">
 		<li>
-			<div><h4>Ò½ÁÆ»ú¹¹Ãû³Æ</h4></div>
-			<div class="content">»¦¸ë¿ÚÇ»</div>
+			<div><h4>åŒ»ç–—æœºæ„åç§°</h4></div>
+			<div class="content">æ²ªé¸½å£è…”</div>
 			<div><img src="images/kl.jpg" width="400px" height="300px"></div>
 		</li>
 		
@@ -79,15 +79,15 @@ appId: "",
 MsgImg: "http://chivashi.gotoip1.com/cover.jpg",
 TLImg: "http://chivashi.gotoip1.com/cover.jpg",
 url: "http://mp.weixin.qq.com/s?__biz=MzA3OTQ2NjkwMA==&mid=200600448&idx=1&sn=459125c55439aef94e6eb1df8ab179f3#rd",
-title: '²Î¼ÓNaviCamÎÒÖªµÀ£¬Ó®Ãâ·ÑÌåÑé£¡Ğ¡Ğ¡½ºÄÒ×öÎ¸¾µ£¬ÇáÇáËÉËÉËÍÏíÎ¸¼ì£¡',
-desc: '²Î¼ÓNaviCamÎÒÖªµÀ£¬Ó®Ãâ·ÑÌåÑé£¡',
+title: 'å‚åŠ NaviCamæˆ‘çŸ¥é“ï¼Œèµ¢å…è´¹ä½“éªŒï¼å°å°èƒ¶å›Šåšèƒƒé•œï¼Œè½»è½»æ¾æ¾é€äº«èƒƒæ£€ï¼',
+desc: 'å‚åŠ NaviCamæˆ‘çŸ¥é“ï¼Œèµ¢å…è´¹ä½“éªŒï¼',
 fakeid: "",
 callback: function () {
 }
 };
 (function () {
 var onBridgeReady = function () {
-// ·¢ËÍ¸øºÃÓÑ; 
+// å‘é€ç»™å¥½å‹; 
 WeixinJSBridge.on('menu:share:appmessage', function (argv) {
 WeixinJSBridge.invoke('sendAppMessage', {
 "appid": dataForWeixin.appId,
@@ -100,7 +100,7 @@ WeixinJSBridge.invoke('sendAppMessage', {
 }, function (res) {
 });
 });
-// ·ÖÏíµ½ÅóÓÑÈ¦;
+// åˆ†äº«åˆ°æœ‹å‹åœˆ;
 WeixinJSBridge.on('menu:share:timeline', function (argv) {
 (dataForWeixin.callback)();
 WeixinJSBridge.invoke('shareTimeline', {
@@ -113,7 +113,7 @@ WeixinJSBridge.invoke('shareTimeline', {
 }, function (res) {
 });
 });
-// ·ÖÏíµ½Î¢²©;
+// åˆ†äº«åˆ°å¾®åš;
 WeixinJSBridge.on('menu:share:weibo', function (argv) {
 WeixinJSBridge.invoke('shareWeibo', {
 "content": dataForWeixin.title,
