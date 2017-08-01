@@ -1,3 +1,5 @@
+<?php /* Smarty version 2.6.10, created on 2017-08-02 00:37:57
+         compiled from login.php */ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,24 +9,24 @@
 </head>
 <body>
 <script type="text/javascript">
-{literal}
+<?php echo '
 	function login(){
 	
 		//帐号
-		var username = $('#username').val();
+		var username = $(\'#username\').val();
 		
-		if(username == ''){
-			alert('请输入您的帐号！');
-			$('#username').focus();
+		if(username == \'\'){
+			alert(\'请输入您的帐号！\');
+			$(\'#username\').focus();
 			return false;
 		}
 		
 		//密码
-		var pwd =  $('#password').val();
+		var pwd =  $(\'#password\').val();
 		
-		if(pwd == ''){
-			alert('请输入密码！');
-			$('#password').focus();
+		if(pwd == \'\'){
+			alert(\'请输入密码！\');
+			$(\'#password\').focus();
 			return false;
 		}
 		
@@ -32,18 +34,19 @@
 		   type: "POST",
 		   dataType: "json",
 		   url: "user.php?do=login",
-		   data: "username="+username+'&password='+pwd,
+		   data: "username="+username+\'&password=\'+pwd,
 		   success: function(msg){
 			   if(msg.status){
-			      window.location.href = '/index.php';	  
+			      window.location.href = \'/index.php\';	  
 			   }else{
 			   	  alert(msg.info);
-				  $('#password').val('');
+				  $(\'#password\').val(\'\');
 			   }
 		   }
 		});
 	}
-{/literal}
+'; ?>
+
 </script>
 <div data-role="page">
   <div data-role="header">
