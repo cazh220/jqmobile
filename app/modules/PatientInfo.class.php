@@ -41,7 +41,7 @@ class PatientInfo
     		return false;
     	}
 
-    	$sql  = "INSERT INTO hg_patient(name, sex, birthday, hospital, doctor, tooth_position, production_unit, create_time, operator, false_tooth, repaire_pic)VALUES('".$data['name']."', '".$data['sex']."', '".$data['birthday']."', '".$data['hospital']."', '".$data['doctor']."','".$data['tooth_position']."', '".$data['production_unit']."','".$data['create_time']."', '".$data['operator']."', '".$data['false_tooth']."', '".$data['repaire_pic']."')";
+    	$sql  = "INSERT INTO hg_patient(name, sex, birthday, hospital, doctor, tooth_position, production_unit, create_time, operator, false_tooth, repairosome_pic, security_code, mobile, email, update_time)VALUES('".$data['name']."', '".$data['sex']."', '".$data['birthday']."', '".$data['hospital']."', '".$data['doctor']."','".$data['tooth_position']."', '".$data['production_unit']."','".$data['create_time']."', '".$data['operator']."', '".$data['false_tooth']."', '".$data['repaire_pic']."','".$data['security_code']."','".$data['mobile']."','".$data['email']."','".$data['update_time']."')";
 		$res = $this->db->exec($sql);
     	
     	if($res === false) {
@@ -57,6 +57,31 @@ class PatientInfo
 		}
     	
     	return false;
+    }
+    
+    //获取患者信息
+    public function get_patient($qrcode='')
+    {
+    	if ($qrcode)
+    	{
+    		if($this->db == null){
+	    		return false;
+	    	}
+	
+	    	$sql = "SELECT * FROM hg_patient WHERE security_code = '".$qrcode."'";
+	
+	    	$res = $this->db->getArray($sql);
+	
+	    	if($res === false){
+				return $this->_log(array( __CLASS__ . '.class.php line ' . __LINE__ , 'function '. __FUNCTION__ . ' sql execute false. sql = ' . $sql, date("Y-m-d H:i:s")));
+			}
+			
+			return $res;
+    	}
+    	else
+    	{
+    		return false;
+    	}
     }
 	
 	

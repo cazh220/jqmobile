@@ -2,9 +2,6 @@
 /**
  * 用户处理类
  * 
- * @package  	controller
- * @author 	    鲍(chenglin.bao@lyceem.com)
- * @copyright   2010-4-29
  */
 require_once('./common.inc.php');
 
@@ -77,6 +74,8 @@ class user extends Action {
 	//注册
 	public function doRegister()
 	{
+		$mobile = $_POST['mobile'];
+		$username = $_POST['username'];
 		$realname = $_POST['realname'];
 		$pwd1	= $_POST['password1'];
 		$pwd2	= $_POST['password2'];
@@ -91,44 +90,71 @@ class user extends Action {
 		$district = $_POST['district'];
 		$address = $_POST['address'];
 		$dec = $_POST['addinfo'];
-		$files = $_FILES['cfile'];
-		
-		
-		$name = time().'.jpg';
-		$file_path = "E:/mobile/jqmobile/app/public/upload/".$name;
-        
-		if(move_uploaded_file($_FILES['cfile']['tmp_name'], $file_path))
+
+		//上传图片
+		$upload_pic = $this->_upload_pic();
+		if (!empty($upload_pic))
 		{
+			import('util.Ip');
+			$obj_ip = new Ip;
+			$s_ip = $obj_ip->get();
+			$s_ip = $s_ip ? $s_ip : $_SERVER['REMOTE_ADDR'];
 			//插入基本信息
 			$data = array(
+				'mobile'	=> $mobile,
+				'username'	=> $username,
 				'realname'	=> $realname,
 				'password'	=> $pwd1,
-				'user_type'	=> $user_type=='techer' ? 1 :2,
+				'user_type'	=> $user_type,//1技工   2医生
 				'email'	    => $email,
 				'company_name'	=> $company_name,
 				'job'		=> $job,
-				'create_time' => $create_time,
+				'birthday' => $create_time.' 00:00:00',
 				'employee_num' => $employee_num,
 				'province'	=> $province,
 				'city'		=> $city,
 				'district'	=> $district,
 				'address' => $address,
 				'dec'	=> $dec,
-				'pic'	=> $name
-			); 
+				'pic'	=> $upload_pic,
+				'create_time' => date("Y-m-d H:i:s", time()),
+				'last_login'	=> date("Y-m-d H:i:s", time()),
+				'last_ip'	=> $s_ip
+			);
 			
 			importModule("userInfo","class");
 			$obj_user = new userInfo;
 			$user_id = $obj_user->insert_user($data);
 
 			if ($user_id) {
-				header('Location: user.php?do=ucenter&user_id='.$user_id);
+				//注册成功
+				$user_info = array(
+					'username'	=> $username,
+					'realname'	=> $realname,
+					'mobile'	=> $mobile,
+					'user_type'	=> $user_type,
+					'email'		=> $email,
+					'birthday'	=> $create_time.' 00:00:00',
+					'company_name'	=> $company_name,
+					'position'	=> $job,
+					'total_credits'	=> 0,
+					'exchanged_credits'	=> 0,
+					'left_credits'	=> 0,
+					'persons_num'	=> $employee_num,
+					'create_time'	=> date("Y-m-d H:i:s", time()),
+					'head_img'		=> $upload_pic,
+					'user_id'		=> $user_id
+				);
+				$_SESSION = $user_info;
+				$_SESSION['login_time']  = time();
+				header('Location: user.php?do=ucenter&user_id='.$user_id);//进入会员中心
 			}
 		}
 		else 
 		{
-			echo json_encode(array('status'=>0, 'message'=>'failed'));
+			exit(json_encode(array('status'=>0, 'message'=>'failed')));
 		}
+		
 		
 	}
 
@@ -140,7 +166,7 @@ class user extends Action {
 		$obj_user = new userInfo;
 
 		$user = $obj_user->get_user_detail($user_id);
-
+	    //print_r($user);
 		$page = $this->app->page();
 		$page->value('user',$user[0]);
 		$page->params['template'] = 'user.php';
@@ -151,8 +177,12 @@ class user extends Action {
 	public function doPatientIn()
 	{
 		$user_id = $_GET['user_id'];
+		$qrcode = $_GET['qrcode'];
+		//print_r($_SESSION);
 		$page = $this->app->page();
-		//$page->value('user',$user[0]);
+		$page->value('user_id',$user_id);
+		$page->value('qrcode',$qrcode);
+		$page->value('user',$_SESSION);
 		$page->params['template'] = 'patient.php';
 		$page->output();
 	}
@@ -161,8 +191,17 @@ class user extends Action {
 	public function doDoctorIn()
 	{
 		$user_id = $_GET['user_id'];
+		$qrcode = $_GET['qrcode'];
+		//获取患者信息
+		importModule("PatientInfo","class");
+		$obj_patient = new PatientInfo;
+		$patient = $obj_patient->get_patient($qrcode);
+
 		$page = $this->app->page();
-		//$page->value('user',$user[0]);
+		print_r($_SESSION);
+		print_r($patient[0]);
+		$page->value('patient',$patient[0]);
+		$page->value('doctor',$_SESSION);
 		$page->params['template'] = 'doctor.php';
 		$page->output();
 	}
@@ -225,26 +264,24 @@ class user extends Action {
 		
 		$code = $obj_code->validate_code($mobile);
 		
+		//获取 省份
 		importModule("AreaInfo","class");
 		$obj_area = new AreaInfo;
 		$province = $obj_area->get_province();
 		
-		//获取 省份
-		$page = $this->app->page();
-		$page->value('province',$province);
-		$page->params['template'] = 'register_t.php';
-		$page->output();
-			/*
 		if (!empty($code[0]['code']) && $code[0]['code'] == $vcode)
 		{
 			$page = $this->app->page();
+			$page->value('province',$province);
+			$page->value('mobile',$mobile);
+			$page->value('username',$mobile);
 			$page->params['template'] = 'register_t.php';
 			$page->output();
 		}
 		else
 		{
 			echo "<script>history.back(-1);return false;</script>";
-		}*/
+		}
 	}
 	
 	//协议
@@ -279,6 +316,37 @@ class user extends Action {
 			print_r($result);
 		}
 		
+	}
+	
+	
+	//上传图片
+	private function _upload_pic()
+	{
+		$ar_type  = explode('.',$_FILES['cfile']['name']); 
+		$s_type   = strtolower($ar_type[1]);
+		
+		if(!in_array($s_type,array('jpg','png','bmp','gif'))){
+			exit(json_encode(array('status'=>0, 'info'=>'文件类型不正确')));
+		}
+		
+		if(!file_exists('public/upload/data/')) {
+			if(!mkdir('data')) {
+				exit(json_encode(array('status'=>0, 'info'=>'创建目录失败')));
+			}
+			
+			chmod('data/',0777);
+		}
+		
+		import('util.UploadFile');
+		$obj_upload = new UploadFile;
+		
+		$res = $obj_upload->upload($_FILES['cfile'],'./public/upload/data/', 1);
+
+		if($res === false) {
+			exit(json_encode(array('status'=>0, 'info'=>'文件上传失败')));
+		}
+		
+		return $res;
 	}
 	
 	/**

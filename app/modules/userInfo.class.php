@@ -76,7 +76,7 @@ class userInfo
     		return false;
     	}
 
-		$sql  = "INSERT INTO hg_user(realname, password, user_type, email, company_name, company_addr, department, position, persons_num, head_img)VALUES('".$data['realname']."', '".md5($data['password'])."', '".$data['user_type']."', '".$data['email']."', '".$data['company_name']."','".$data['address']."', '','".$data['job']."', '".$data['employee_num']."', '".$data['pic']."')";
+		$sql  = "INSERT INTO hg_user(username, mobile, realname, password, user_type, email, company_name, company_addr, department, position, persons_num, head_img, birthday, create_time, last_login, last_ip)VALUES('".$data['username']."','".$data['mobile']."','".$data['realname']."', '".md5($data['password'])."', '".$data['user_type']."', '".$data['email']."', '".$data['company_name']."','".$data['address']."', '','".$data['job']."', '".$data['employee_num']."', '".$data['pic']."','".$data['birthday']."','".$data['create_time']."','".$data['last_login']."','".$data['last_ip']."')";
 		$res = $this->db->exec($sql);
     	
     	if($res === false) {

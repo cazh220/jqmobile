@@ -2,9 +2,10 @@
 <html>
 <head>
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="templates/css/style.css">
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+<script src="public/layer_mobile/layer.js"></script>
 </head>
 <body>
 
@@ -34,9 +35,9 @@
 				<td width="100%" colspan="2">
 					<fieldset data-role="controlgroup">
 						<label for="techer">技工</label>
-						<input type="radio" name="typer" id="techer" value="techer" checked="checked">
+						<input type="radio" name="typer" id="techer" value="1" checked="checked">
 						<label for="doctor">医生</label>
-						<input type="radio" name="typer" id="doctor" value="doctor">	
+						<input type="radio" name="typer" id="doctor" value="2">	
 				    </fieldset>
 				</td>
 			</tr>
@@ -88,11 +89,11 @@
 				<td width="100%" colspan="2"><textarea name="addinfo" id="info" placeholder="单位介绍"></textarea></td>
 			</tr>
 			<tr>
-				<td width="20%" style="text-align:right">
+				<td width="15%" style="text-align:right">
 					<input type="checkbox" name="agree" id="agree" value="agree" style="zoom:200%;">
 					
 				</td>
-				<td width="80%" style="text-align:left">
+				<td width="85%" style="text-align:left">
 					我已阅读并接受<a href="user.php?do=ViewXy" style="text-decoration:none">《用户注册协议》</a>
 					
 				</td>
@@ -102,6 +103,8 @@
 		</table>
 
 		<input type="submit" id="register" value="注册" >
+		<input type="hidden" id="mobile" name="mobile" value="{$mobile}" >
+		<input type="hidden" id="username" name="username" value="{$username}" >
     </form>
   </div>
 </div>
@@ -146,12 +149,22 @@ $("#city").change(function(){
 	});
 });
 
+function show(note)
+{
+	//提示
+  layer.open({
+    content: note
+    ,skin: 'msg'
+    ,time: 2 //2秒后自动关闭
+  });
+}
+
 $("#register").click(function(){
 	
 	var agree = $("#agree").attr("checked");
 	if (typeof(agree)=="undefined")
 	{
-		alert("你还没有同意协议");
+	  show('请接受用户注册协议');
 		return false;
 	}
 	
@@ -159,93 +172,93 @@ $("#register").click(function(){
 	var realname = $("#realname").val();
 	if (realname == '')
 	{
-		alert("请填写真实姓名");
+		show('请填写真实姓名');
 		return false;
 	}
 	
 	var password1 = $("#password1").val();
 	if (password1 == '')
 	{
-		alert("请填写密码");
+		show("请填写密码");
 		return false;
 	}
 	
 	var password2 = $("#password2").val();
 	if (password2 == '')
 	{
-		alert("请填写确认密码");
+		show("请填写确认密码");
 		return false;
 	}
 	
 	if (password2 != password1)
 	{
-		alert("密码不一致");
+		show("密码不一致");
 		return false;
 	}
 	
 	var email = $("#email").val();
 	if (email == '')
 	{
-		alert("请填写邮箱");
+		show("请填写邮箱");
 		return false;
 	}
 	
 	var company_name = $("#company_name").val();
 	if (company_name == '')
 	{
-		alert("请填写单位名称");
+		show("请填写单位名称");
 		return false;
 	}
 	
 	var job = $("#job").val();
 	if (job == '')
 	{
-		alert("请填写职位");
+		show("请填写职位");
 		return false;
 	}
 	
 	var create_time = $("#create_time").val();
 	if (create_time == '')
 	{
-		alert("请填写成立时间");
+		show("请填写成立时间");
 		return false;
 	}
 	
 	var employee_num = $("#employee_num").val();
 	if (employee_num == '')
 	{
-		alert("请填写员工数");
+		show("请填写员工数");
 		return false;
 	}
 	
 	var district = $("#district").val();
 	if (district == '')
 	{
-		alert("请选择省市区");
+		show("请选择省市区");
 		return false;
 	}
 	
 	var address = $("#address").val();
 	if (address == '')
 	{
-		alert("请填写地址");
+		show("请填写地址");
 		return false;
 	}
 	
 	var file = $("#cfile").val();
 	if (file == '')
 	{
-		alert("请选择图片");
+		show("请选择图片");
 		return false;
 	}
 	
 	var info = $("#info").val();
 	if (info == '')
 	{
-		alert("请填写单位介绍");
+		show("请填写单位介绍");
 		return false;
 	}
-
+	
 });
 
 {/literal}

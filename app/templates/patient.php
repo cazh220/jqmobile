@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+<script src="public/layer_mobile/layer.js"></script>
 </head>
 <body>
 
@@ -29,9 +30,8 @@
         </div>
         <div style="height: 50px; text-align: right; width: 25%; float: left; line-height: 50px">患者年龄：</div><div style="height: 50px; text-align: center; width: 75%; float: left; line-height: 50px"><input type="text" name="patient_age" id="patient_age" placeholder="患者年龄"></div> 
         <div style="height: 50px; text-align: right; width: 25%; float: left; line-height: 50px">选择牙位：</div><div style="height: 50px; text-align: center; width: 75%; float: left; line-height: 50px"><input type="text" name="tooth_position" id="tooth_position" placeholder="左上|右上|左下|右下"></div>
-        <div style="height: 50px; text-align: right; width: 25%; float: left; line-height: 50px">制作单位：</div><div style="height: 50px; text-align: center; width: 75%; float: left; line-height: 50px"><input type="text" name="production_unit" id="production_unit" placeholder=""></div>
-        <div style="height: 50px; text-align: right; width: 25%; float: left; line-height: 50px">录入时间：</div><div style="height: 50px; text-align: center; width: 75%; float: left; line-height: 50px"><input type="text" name="create_time" id="create_time" placeholder=""></div>
-        <div style="height: 50px; text-align: right; width: 25%; float: left; line-height: 50px">录入人员：</div><div style="height: 50px; text-align: center; width: 75%; float: left; line-height: 50px"><input type="text" name="recorder" id="recorder"></div>
+        <div style="height: 50px; text-align: right; width: 25%; float: left; line-height: 50px">制作单位：</div><div style="height: 50px; text-align: center; width: 75%; float: left; line-height: 50px"><input type="text" name="production_unit" id="production_unit" placeholder="" value="{$user.company_name}" disabled="disabled"></div>
+        <div style="height: 50px; text-align: right; width: 25%; float: left; line-height: 50px">录入人员：</div><div style="height: 50px; text-align: center; width: 75%; float: left; line-height: 50px"><input type="text" name="recorder" id="recorder" value="{$user.realname}" disabled="disabled"></div>
         <div style="height: 50px; text-align: right; width: 25%; float: left; line-height: 50px">修复体类别：</div><div style="text-align: center; width: 75%; float: left;">
         	<fieldset data-role="fieldcontain">
 		        <select name="repaire_type" id="repaire_type">
@@ -44,20 +44,74 @@
 
       </div>
       <div style="text-align: right; width: 50%; float: left;"><a href="#" data-role="button" onclick="doreset()">更改</a></div><div style="text-align: center; width: 50%; float: left;"><a href="#" data-role="button" onclick="dodubmit()">提交</a></div>
-      
+      <input type="hidden" id="user_id" name="user_id" value="{$user_id}" />
+      <input type="hidden" id="qrcode" name="qrcode" value="{$qrcode}" />
     </form>
   </div>
 </div>
 <script type="text/javascript">
 {literal}
+function show(note)
+{
+	//提示
+  layer.open({
+    content: note
+    ,skin: 'msg'
+    ,time: 2 //2秒后自动关闭
+  });
+}
+
 function dodubmit()
 {
-  $("#patient_form").submit();
+	var hospital = $("#hospital").val();
+	if (hospital=="")
+	{
+	  show('请填写医疗机构');
+		return false;
+	}
+	
+	
+	var doctor = $("#doctor").val();
+	if (doctor == '')
+	{
+		show('请填写医疗专家');
+		return false;
+	}
+	
+	var patient_name = $("#patient_name").val();
+	if (patient_name == '')
+	{
+		show('请填写患者姓名');
+		return false;
+	}
+	
+	var patient_age = $("#patient_age").val();
+	if (patient_age == '')
+	{
+		show('请填写患者年龄');
+		return false;
+	}
+	
+	var tooth_position = $("#tooth_position").val();
+	if (tooth_position == '')
+	{
+		show('请填写牙位');
+		return false;
+	}
+	
+	var file = $("#repaire_pic").val();
+	if (file == '')
+	{
+		show("请选择图片");
+		return false;
+	}
+	
+	document.getElementById("patient_form").submit();
 }
 
 function doreset()
 {
-  $("#patient_form").reset();
+	document.getElementById("patient_form").reset();
 }
 {/literal}
 </script>
