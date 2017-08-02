@@ -198,10 +198,11 @@ class user extends Action {
 		$patient = $obj_patient->get_patient($qrcode);
 
 		$page = $this->app->page();
-		print_r($_SESSION);
-		print_r($patient[0]);
+		//print_r($_SESSION);
+		//print_r($patient[0]);
 		$page->value('patient',$patient[0]);
 		$page->value('doctor',$_SESSION);
+		$page->value('qrcode',$qrcode);
 		$page->params['template'] = 'doctor.php';
 		$page->output();
 	}

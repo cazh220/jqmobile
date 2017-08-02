@@ -44,7 +44,7 @@
         <div style="height: 50px; text-align: right; width: 25%; float: left; line-height: 50px">案例图片：</div><div style="height: 50px; text-align: center; width: 75%; float: left; line-height: 50px"><input type="file" name="file" id="file" value=""></div>
 
       </div>
-      <div style="text-align: right; width: 50%; float: left;"><a href="patient.php" data-role="button">提交</a></div><div style="text-align: center; width: 50%; float: left;"><a href="patient.php" data-role="button">纠错</a></div>
+      <div style="text-align: right; width: 50%; float: left;"><a href="patient.php" data-role="button">提交</a></div><div style="text-align: center; width: 50%; float: left;"><a href="doctor.php?do=correction&qrcode={$qrcode}" data-role="button">纠错</a></div>
       
     </form>
   </div>
