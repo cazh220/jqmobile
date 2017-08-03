@@ -33,16 +33,36 @@ function send()
 		show('请填写正确信息');
 		return false;
 	}
+	
+	var qrcode = $("#qrcode").val();
 	console.log(errorinfo);
+	
 	$.ajax({
 		url:'doctor.php?do=writecorrction',
-		data:'errorinfo='+errorinfo+'&correction='+correction,
-		method:'POST',
+		data:'errorinfo='+errorinfo+'&correction='+correction+'&qrcode='+qrcode,
+		method:'GET',
+		dataType:'json',
 		success:function(msg){
-			
+			if(msg.status)
+			{
+				//跳转到
+				layer.open({
+				    content: '您的纠错信息已提交，我们会尽快通知技工会员更正相关信息，感谢您的支持！'
+				    ,btn: '我知道了'
+				    ,end:function(){
+				    	window.location.href="user.php?do=ucenter&user_id="+msg.result.user_id;
+				    }
+				});
+			}
+			else
+			{
+				show('failed');
+				return false;
+			}
 		}
 		
 	});
+	
 
 	//$("#correction_form").submit();
 }

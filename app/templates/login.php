@@ -35,7 +35,7 @@
 		   data: "username="+username+'&password='+pwd,
 		   success: function(msg){
 			   if(msg.status){
-			      window.location.href = '/index.php';	  
+			      window.location.href = '/user.php?do=ucenter';	  
 			   }else{
 			   	  alert(msg.info);
 				  $('#password').val('');

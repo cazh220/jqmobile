@@ -76,7 +76,24 @@ class OrderInfo
 		{
     		return false;
     	}
-		$sql = "SELECT * FROM hg_order a LEFT JOIN hg_order_gift b ON a.order_id = b.order_id AND a.order_no ='".$order_no."'";
+		$sql = "SELECT * FROM hg_order a LEFT JOIN hg_order_gift b ON a.order_id = b.order_id WHERE a.order_no ='".$order_no."'";
+		
+		$res = $this->db->getArray($sql);
+		
+		if($res === false){
+			return $this->_log(array( __CLASS__ . '.class.php line ' . __LINE__ , 'function '. __FUNCTION__ . ' sql execute false. sql = ' . $sql, date("Y-m-d H:i:s")));
+		}
+		return $res;
+	}
+	
+	//我的订单
+	public function get_my_order($user_id)
+	{
+		if($this->db == null)
+		{
+    		return false;
+    	}
+		$sql = "SELECT * FROM hg_order a LEFT JOIN hg_order_gift b ON a.order_id = b.order_id WHERE a.user_id = {$user_id}";
 		
 		$res = $this->db->getArray($sql);
 		

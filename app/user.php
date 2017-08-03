@@ -161,14 +161,20 @@ class user extends Action {
 	//用户中心
 	public function doUcenter()
 	{
-		$user_id = $_GET['user_id'];
+		//$user_id = $_GET['user_id'];
+		$user_id = $_SESSION['user_id'];
 		importModule("userInfo","class");
 		$obj_user = new userInfo;
 
 		$user = $obj_user->get_user_detail($user_id);
-	    //print_r($user);
+		//获取未读消息数量
+		importModule("MessageInfo","class");
+		$obj_message = new MessageInfo;
+		$message_count = $obj_message->get_unread_count($user_id);
+	    //var_dump($message_count);die;
 		$page = $this->app->page();
 		$page->value('user',$user[0]);
+		$page->value('message_count',$message_count);
 		$page->params['template'] = 'user.php';
 		$page->output();
 	}
@@ -348,6 +354,35 @@ class user extends Action {
 		}
 		
 		return $res;
+	}
+	
+	//设置
+	public function doSetting()
+	{
+		$page = $this->app->page();
+		$page->params['template'] = 'setting.php';
+		$page->output();
+	}
+	
+	//个人中心
+	public function doMember()
+	{
+		$user_id = $_SESSION['user_id'];
+		//获取个人信息
+		importModule("userInfo","class");
+		$obj_user = new userInfo;
+		$user = $obj_user->get_user_detail($user_id);
+		
+		//获取 省份
+		importModule("AreaInfo","class");
+		$obj_area = new AreaInfo;
+		$province = $obj_area->get_province();
+		//print_r($user);
+		$page = $this->app->page();
+		$page->value('mine',$user[0]);
+		$page->value('province',$province);
+		$page->params['template'] = 'member.php';
+		$page->output();
 	}
 	
 	/**

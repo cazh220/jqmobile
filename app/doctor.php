@@ -33,10 +33,10 @@ class doctor extends Action {
 	//发送消息
 	public function doWriteCorrction()
 	{
-		$error = $_POST['error_info'];
-		$correct = $_POST['correct_info'];
-		$qrcode = $_POST['qrcode'];
-		print_r($_GET);die;
+		$error = $_GET['errorinfo'];
+		$correct = $_GET['correction'];
+		$qrcode = $_GET['qrcode'];
+
 		//获取录入的技工
 		importModule("PatientInfo","class");
 		$obj_patient = new PatientInfo;
@@ -48,17 +48,23 @@ class doctor extends Action {
 			'to'			=> $patient[0]['operate_user_id'],
 			'error_info'	=> $error,
 			'correct_info'	=> $correct,
-			'create_time'	=> date("Y-m-d H:i:s", time())
+			'create_time'	=> date("Y-m-d H:i:s", time()),
+			'qrcode'		=> $qrcode
 		);
 		
 		importModule("MessageInfo","class");
 		$obj_message = new MessageInfo;
 		$res = $obj_message->write_message($param);
 		
-		if ($res) {
-			header('Location: patient.php?do=recordsuccess&qrcode='.$qrcode);
+		if($res)
+		{
+			exit(json_encode(array('status'=>1, 'msg'=>'success', 'result'=>array('user_id'=>$_SESSION['user_id']))));
 		}
-		
+		else
+		{
+			exit(json_encode(array('status'=>0, 'msg'=>'failed')));
+		}
+				
 	}
 
 	//病人录入

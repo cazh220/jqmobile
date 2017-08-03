@@ -33,16 +33,54 @@ class MessageInfo
         mysql_query("set names utf8");
     }
     
-    public function write_message($data=array())
+    //消息列表
+    public function get_message_list($user_id=0)
     {
     	if($this->db == null)
 		{
     		return false;
     	}
     	
+    	$sql = "SELECT *,a.create_time as send_time,c.create_time as record_time FROM hg_message a LEFT JOIN hg_user b ON a.from_user_id = b.user_id  LEFT JOIN hg_patient c ON a.qrcode = c.security_code WHERE to_user_id = {$user_id} AND is_delete = 0";
+    	//echo $sql;die;
+    	$res = $this->db->getArray($sql);
+	
+    	if($res === false){
+			return $this->_log(array( __CLASS__ . '.class.php line ' . __LINE__ , 'function '. __FUNCTION__ . ' sql execute false. sql = ' . $sql, date("Y-m-d H:i:s")));
+		}
+		
+		return $res;
+    }
+    
+    //未读消息数量
+    public function get_unread_count($user_id=0)
+    {
+    	if($this->db == null)
+		{
+    		return false;
+    	}
     	
-    	$sql  = "INSERT INTO hg_message(type, from, to, message, error_info, correct_info, create_time)VALUES('".$data['type']."', '".$data['from']."', '".$data['to']."', '".$data['message']."', '".$data['correct_info']."','".$data['create_time']."')";
-		echo $sql;die;
+    	$res = 0;
+    	$sql = "SELECT count(*) as num FROM hg_message WHERE to_user_id = {$user_id} AND is_delete = 0";
+    	$res = $this->db->getValue($sql);
+
+    	if($res === false){
+			return $this->_log(array( __CLASS__ . '.class.php line ' . __LINE__ , 'function '. __FUNCTION__ . ' sql execute false. sql = ' . $sql, date("Y-m-d H:i:s")));
+		}
+		
+		return $res;
+    }
+    
+    //写消息
+    public function write_message($data=array())
+    {
+    	if($this->db == null)
+		{
+    		return false;
+    	}
+
+    	$sql  = "INSERT INTO hg_message(type, from_user_id, to_user_id, message, error_info, correct_info, create_time, qrcode)VALUES('".$data['type']."', '".$data['from']."', '".$data['to']."', '".$data['message']."','".$data['error_info']."','".$data['correct_info']."','".$data['create_time']."','".$data['qrcode']."')";
+	
 		$res = $this->db->exec($sql);
     	
     	if($res === false) {
@@ -69,7 +107,7 @@ class MessageInfo
 	 */
 	private function _log($data){
 	    $log = $this->app->log();
-	    $log->reset()->setPath("modules/UserInfo")->setData($data)->write();
+	    $log->reset()->setPath("modules/MessageInfo")->setData($data)->write();
 	    
 	    return false;
 	}

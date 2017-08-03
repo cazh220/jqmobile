@@ -138,7 +138,19 @@ class order extends Action {
 	public function doMyOrder()
 	{
 		$user_id = $_SESSION['user_id'];
-		var_dump($user_id);
+		importModule("OrderInfo","class");
+		$obj_order = new OrderInfo;
+		$data = $obj_order->get_my_order($user_id);
+		//print_r($data);die;
+		$page = $this->app->page();
+		$page->value('list', $data);
+		$page->value('address',isset($data[0]['address']) ? $data[0]['address'] : '');
+		$page->value('consignee',isset($data[0]['consignee']) ? $data[0]['consignee'] : '');
+		$page->value('mobile',isset($data[0]['mobile']) ? $data[0]['mobile'] : '');
+		$page->value('create_time',isset($data[0]['create_time']) ? $data[0]['create_time'] : '');
+		$page->value('send_time',isset($data[0]['send_time']) ? '已发货' : '待发货');
+		$page->params['template'] = 'myorder.php';
+		$page->output();
 	}
 	
 }

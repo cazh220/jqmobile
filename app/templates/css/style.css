@@ -26,7 +26,7 @@ a {
 	font-size:xx-small;
 }
 .list_order_success{
-	height:80px;
+	/*height:80px;*/
 	padding:10px;
 	font-size:xx-small;
 }
@@ -70,6 +70,13 @@ a {
 th{
 	border-bottom: solid 1px;
     line-height: 30px;
+}
+
+.ui-li-head{
+	margin: .3em 0;
+}
+.link_style{
+	color: #008080;
 }
 
 *{text-decoration: none;margin: 0;padding: 0;list-style: none;}
