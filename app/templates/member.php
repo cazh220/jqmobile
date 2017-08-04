@@ -28,7 +28,7 @@
 						<label for="techer">技工</label>
 						<input type="radio" name="typer" id="techer" value="1" {if $mine.user_type == 1 || !$mine.user_type}checked="checked"{/if}>
 						<label for="doctor">医生</label>
-						<input type="radio" name="typer" id="doctor" value="2" {if $mine.user_type == 1}checked="checked"{/if}>	
+						<input type="radio" name="typer" id="doctor" value="2" {if $mine.user_type == 2}checked="checked"{/if}>	
 				    </fieldset>
 				</td>
 			</tr>
@@ -42,7 +42,7 @@
 				<td width="100%" colspan="2"><input type="text" name="job" id="job" placeholder="部门职位" value="{$mine.position}"></td>
 			</tr>
 			<tr>
-				<td width="100%" colspan="2"><input type="date" name="create_time" id="create_time" value="成立时间" value="{$mine.birthday}"></td>
+				<td width="100%" colspan="2"><input type="date" name="create_time" id="create_time" value="2014-01-13"></td>
 			</tr>
 			<tr>
 				<td width="100%" colspan="2"><input type="text" name="employee_num" id="employee_num" placeholder="椅位数/员工数" value="{$mine.persons_num}"></td>
@@ -54,7 +54,7 @@
 						<select name="province" id="province">
 						{if $province}
 							{foreach from=$province item=item key=key}
-							<option value="{$item.id}">{$item.name}</option>
+							<option value="{$item.id}" {if $item.province == $mine.province}checked{/if}>{$item.name}</option>
 						    {/foreach}
 						{/if}
 						</select>

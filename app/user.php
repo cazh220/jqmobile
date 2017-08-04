@@ -377,7 +377,7 @@ class user extends Action {
 		importModule("AreaInfo","class");
 		$obj_area = new AreaInfo;
 		$province = $obj_area->get_province();
-		//print_r($user);
+		print_r($user);
 		$page = $this->app->page();
 		$page->value('mine',$user[0]);
 		$page->value('province',$province);
