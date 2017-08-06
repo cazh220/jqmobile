@@ -1,24 +1,24 @@
 <?php
 /**
- * ÇøÓò
+ * åŒºåŸŸ
  */
  
 class AreaInfo
 {
 	/**
-	 * Ó¦ÓÃ³ÌĞò¶ÔÏó
+	 * åº”ç”¨ç¨‹åºå¯¹è±¡
 	 * @var Application
 	 */
 	private $app = null;
 	
 	/**
-	 * Êı¾İ¿â²Ù×÷¶ÔÏó
+	 * æ•°æ®åº“æ“ä½œå¯¹è±¡
 	 * @var OrmQuery
 	 */
 	private $db = null;
 	
 	/**
-     * ¹¹Ôìº¯Êı£¬»ñÈ¡Êı¾İ¿âÁ¬½Ó¶ÔÏó
+     * æ„é€ å‡½æ•°ï¼Œè·å–æ•°æ®åº“è¿æ¥å¯¹è±¡
      *
      */
     public function __construct(){
@@ -31,7 +31,7 @@ class AreaInfo
         mysql_query("set names utf8");
     }
 	
-	//»ñÈ¡Ê¡
+	//è·å–çœ
 	public function get_province()
 	{
 		if($this->db == null)
@@ -55,7 +55,7 @@ class AreaInfo
 		return $r;
 	}
 	
-	//»ñÈ¡³ÇÊĞ
+	//è·å–åŸå¸‚
 	public function get_city($province_id)
 	{
 		$r = array();
@@ -81,7 +81,7 @@ class AreaInfo
 		}
 		return $r;
 	}
-	//»ñÈ¡ÇøÏØ
+	//è·å–åŒºå¿
 	public function get_district($city_id)
 	{
 		$r = array();
@@ -112,7 +112,7 @@ class AreaInfo
 
 	
 	/**
-	 * Êı¾İ¸üĞÂÊ§°Ü¼ÇÂ¼ÈÕÖ¾£¬²¢±êÊ¶²Ù×÷Ê§°Ü
+	 * æ•°æ®æ›´æ–°å¤±è´¥è®°å½•æ—¥å¿—ï¼Œå¹¶æ ‡è¯†æ“ä½œå¤±è´¥
 	 *
 	 * @param 	Array 	$data
 	 * @return 	bool	false

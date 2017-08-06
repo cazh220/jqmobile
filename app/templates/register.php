@@ -5,8 +5,20 @@
 <link rel="stylesheet" href="templates/css/style.css">
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+<script src="public/layer_mobile/layer.js"></script>
 <script type="text/javascript">
 {literal}
+// 提示
+function show(note)
+{
+	//提示
+  layer.open({
+    content: note
+    ,skin: 'msg'
+    ,time: 2 //2秒后自动关闭
+  });
+}
+
 function send_sms()
 {
 	var mobile = $("#mobile").val();
@@ -21,7 +33,32 @@ function send_sms()
 		method:'get',
 		dataType:'json',
 		success:function(msg){
-			
+			show(msg.message);
+		}
+	});
+}
+
+//验证
+function check()
+{
+	var mobile = $("#mobile").val();
+	var code = $("#vcode").val();
+	$.ajax({
+		type:"GET",
+		url:"user.php?do=ValidateMobile",
+		data:"mobile="+mobile+"&vcode="+code,
+		dataType:"json",
+		success:function(msg)
+		{
+			if(msg.status)
+			{
+				window.location.href="user.php?do=showregister&mobile="+mobile;
+			}
+			else
+			{
+				show("验证码不一致");
+				return false;
+			}
 		}
 	});
 }
@@ -50,7 +87,7 @@ function send_sms()
 			</tr>
 		</table>
 
-		<input type="submit" value="下一步">
+		<input type="button" value="下一步" onclick="check()">
     </form>
   </div>
 </div>

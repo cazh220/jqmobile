@@ -14,8 +14,9 @@
   </div>
 
   <div data-role="content" data-theme="b">
-    <form method="post" action="user.php?do=ValidateMobile" data-ajax="false">
+    <form method="post" action="member.php" data-ajax="false">
 		<input type="search" name="search" id="search" placeholder="诊所姓名/模糊查询">
+		<input type="hidden" id="act" name="act" value="1" />
     </form>
   </div>
   
@@ -26,6 +27,16 @@
 		<th width="25%">医院</th>
 		<th width="25%">医生</th>
 	</tr>
+	{if $list}
+	{foreach from=$list item=item key=key}
+	<tr class="member_content_table">
+		<td>{$item.create_time}</td>
+		<td>{$item.security_code}</td>
+		<td>{$item.hospital}</td>
+		<td>{$item.doctor}</td>
+	</tr>
+	{/foreach}
+	{/if}
   </table>
 </div>
 

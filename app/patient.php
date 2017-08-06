@@ -6,6 +6,7 @@
 require_once('./common.inc.php');
 
 class patient extends Action {
+	static $credits = 30;
 	
 	/**
 	 * 默认执行的方法
@@ -15,6 +16,22 @@ class patient extends Action {
 		$page = $this->app->page();
 		$page->value('user',$_SESSION);
 		$page->params['template'] = 'user.php';
+		$page->output();
+	}
+	
+	//编辑技工录入
+	public function doTechRecord()
+	{
+		$qrcode = $_GET['qrcode'];
+		importModule("PatientInfo","class");
+		$obj_patient = new PatientInfo;
+		$patient = $obj_patient->get_patient($qrcode);
+		
+		
+		$page = $this->app->page();
+		$page->value('user',$_SESSION);
+		$page->value('patient',$patient[0]);
+		$page->params['template'] = 'patient_update.php';
 		$page->output();
 	}
 
@@ -42,21 +59,23 @@ class patient extends Action {
 		{
 			//插入基本信息
 			$data = array(
-				'name'	=> $patient_name,
-				'sex'   => $sex,
-				'birthday' => $patient_age,
-				'hospital' => $hospital,
-				'doctor' => $doctor,
-				'tooth_position' => $tooth_position,
-				'production_unit' => $_SESSION['company_name'],
-				'create_time' => date("Y-m-d H:i:s", time()),
-				'operator' => $_SESSION['realname'],
-				'false_tooth' => $repaire_type,
-				'repaire_pic' => $upload_pic,
-				'security_code' => $qrcode,
-				'mobile'	=> $_SESSION['mobile'],
-				'email'		=> $_SESSION['email'],
-				'update_time'	=> date("Y-m-d H:i:s", time()),
+				'name'				=> $patient_name,
+				'sex'   			=> $sex,
+				'birthday' 			=> $patient_age,
+				'hospital' 			=> $hospital,
+				'doctor' 			=> $doctor,
+				'tooth_position' 	=> $tooth_position,
+				'production_unit' 	=> $_SESSION['company_name'],
+				'create_time' 		=> date("Y-m-d H:i:s", time()),
+				'operator' 			=> $_SESSION['realname'],
+				'false_tooth' 		=> $repaire_type,
+				'repaire_pic' 		=> $upload_pic,
+				'security_code' 	=> $qrcode,
+				'mobile'			=> $_SESSION['mobile'],
+				'email'				=> $_SESSION['email'],
+				'update_time'		=> date("Y-m-d H:i:s", time()),
+				'credits'			=> self::$credits,
+				'user_id'			=> $_SESSION['user_id']
 			);
 	
 			importModule("PatientInfo","class");
@@ -71,6 +90,50 @@ class patient extends Action {
 		else 
 		{
 			echo json_encode(array('status'=>0, 'message'=>'failed'));
+		}
+
+	}
+	
+	//病人更新
+	public function doUpdatePatient()
+	{
+		$hospital	= trim($_GET['hospital']);
+		$doctor = trim($_GET['doctor']);
+		$patient_name = trim($_GET['patient_name']);
+		$sex = $_GET['sex'];
+		$patient_age = intval($_GET['patient_age']);
+		$tooth_position = trim($_GET['tooth_position']);
+		$repaire_pic = $_GET['file'];
+		$false_tooth = $_GET['false_tooth'];
+		$user_id	= $_SESSION['user_id'];
+		$qrcode     = trim($_GET['qrcode']);
+	    
+	    $data = array(
+				'patient_name'		=> $patient_name,
+				'sex'   			=> $sex,
+				'patient_age' 		=> $patient_age,
+				'hospital' 			=> $hospital,
+				'doctor' 			=> $doctor,
+				'tooth_position' 	=> $tooth_position,
+				'false_tooth' 		=> $false_tooth,
+				'repaire_pic' 		=> $repaire_pic,
+				'security_code' 	=> $qrcode,
+				'user_id'			=> $_SESSION['user_id']
+			);
+	    
+
+	
+		importModule("PatientInfo","class");
+		$obj_patient = new PatientInfo;
+		$res = $obj_patient->update_patient($data);
+
+		if ($res) {
+			exit(json_encode(array('status'=>true, 'message'=>'更新成功', url=>'user.php?do=ucenter&user_id='.$user_id.'&qrcode='.$qrcode)));
+			//header('Location: user.php?do=ucenter&user_id='.$user_id."&qrcode="+$qrcode);
+		}
+		else
+		{
+			exit(json_encode(array('status'=>false, 'message'=>'更新失败')));
 		}
 
 	}

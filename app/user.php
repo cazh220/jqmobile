@@ -263,32 +263,40 @@ class user extends Action {
 	//验证手机
 	public function doValidateMobile()
 	{
-		$mobile = trim($_POST['mobile']);
-		$vcode  = trim($_POST['vcode']);
+		$mobile = trim($_GET['mobile']);
+		$vcode  = trim($_GET['vcode']);
 		
 		importModule("SmsCode","class");
 		$obj_code = new SmsCode;
 		
 		$code = $obj_code->validate_code($mobile);
 		
+		if (!empty($code[0]['code']) && $code[0]['code'] == $vcode)
+		{
+			exit(json_encode(array('status'=>true, 'message'=>'一致')));
+		}
+		else
+		{
+			exit(json_encode(array('status'=>false, 'message'=>'不一致')));
+		}
+		
+	}
+	
+	//注册页面
+	public function doShowRegister()
+	{
+		$mobile = $_GET['mobile'];
 		//获取 省份
 		importModule("AreaInfo","class");
 		$obj_area = new AreaInfo;
 		$province = $obj_area->get_province();
 		
-		if (!empty($code[0]['code']) && $code[0]['code'] == $vcode)
-		{
-			$page = $this->app->page();
-			$page->value('province',$province);
-			$page->value('mobile',$mobile);
-			$page->value('username',$mobile);
-			$page->params['template'] = 'register_t.php';
-			$page->output();
-		}
-		else
-		{
-			echo "<script>history.back(-1);return false;</script>";
-		}
+		$page = $this->app->page();
+		$page->value('province',$province);
+		$page->value('mobile',$mobile);
+		$page->value('username',$mobile);
+		$page->params['template'] = 'register_t.php';
+		$page->output();
 	}
 	
 	//协议
@@ -318,10 +326,10 @@ class user extends Action {
 			$result = SendSms::send_vcode($mobile, $code);
 			if ($result->returnstatus == 'Success')
 			{
-				echo "<script>alert('动态码已下发');</script>";
+				exit(json_encode(array('status'=>true, 'message'=>'验证码已发送')));
 			}
-			print_r($result);
 		}
+		exit(json_encode(array('status'=>false, 'message'=>'验证码发送失败')));
 		
 	}
 	
@@ -377,12 +385,73 @@ class user extends Action {
 		importModule("AreaInfo","class");
 		$obj_area = new AreaInfo;
 		$province = $obj_area->get_province();
-		print_r($user);
+		
+		$user[0]['birthday'] = date("Y-m-d", strtotime($user[0]['birthday']));
+		//获取省
+		importModule("AreaInfo","class");
+		$obj_area = new AreaInfo;
+		$province = $obj_area->get_province();
+		//获取市
+		$city = $obj_area->get_city($user[0]['province']);
+		//获取区域
+		$district = $obj_area->get_district($user[0]['city']);
+		//print_r($user);
 		$page = $this->app->page();
 		$page->value('mine',$user[0]);
 		$page->value('province',$province);
+		$page->value('city',$city);
+		$page->value('district',$district);
 		$page->params['template'] = 'member.php';
 		$page->output();
+	}
+	
+	//修改个人信息
+	public function doUpdateUser()
+	{
+		$realname = trim($_GET['realname']);
+		$user_type = intval($_GET['user_type']);
+		$email = trim($_GET['email']);
+		$company_name = trim($_GET['company_name']);
+		$address = trim($_GET['address']);
+		$company_pic = trim($_GET['company_pic']);
+		$info = trim($_GET['info']);
+		$province = intval($_GET['province']);
+		$city = intval($_GET['city']);
+		$district = intval($_GET['district']);
+		
+		$data = array(
+			'realname'		=> $realname,
+			'user_type'		=> $user_type,
+			'email'			=> $email,
+			'company_name'	=> $company_name,
+			'address'		=> $address,
+			'company_pic'	=> $company_pic,
+			'info'			=> $info,
+			'province'		=> $province,
+			'city'			=> $city,
+			'district'		=> $district,
+			'user_id'		=> $_SESSION['user_id']
+		);
+		
+		importModule("userInfo","class");
+		$obj_user = new userInfo;
+		$res = $obj_user->update_user($data);
+		
+		if($res)
+		{
+			exit(json_encode(array('status'=>true, 'message'=>'更新会员资料成功')));
+		}
+		else
+		{
+			exit(json_encode(array('status'=>false, 'message'=>'更新会员资料失败')));
+		}
+	}
+	
+	//注销
+	public function doLogOut()
+	{
+		unset($_SESSION);
+		header("Location:user.php");
 	}
 	
 	/**

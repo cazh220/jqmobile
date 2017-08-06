@@ -51,16 +51,16 @@
     </ul>
 	<div style="height:80px"></div>
 	<ul data-role="listview">
-	  <li><a href="message.php?user={$user.user_id}" data-ajax="false">我的消息<span class="ui-li-count">{$message_count}</span></a></li>
+	  <li><a href="message.php?user={$user.user_id}" data-ajax="false">我的消息{if $message_count > 0}<span class="ui-li-count">{$message_count}</span>{/if}</a></li>
       <li><a href="order.php?do=myorder" data-ajax="false">我的订单</a></li>
       <li><a href="shop.php">积分兑换</a></li>
     </ul>
 	
 	<div style="height:80px"></div>
 	<ul data-role="listview">
-      <li><a href="user.php?do=member">个人资料</a></li>
-      <li><a href="user.php?do=setting">设置</a></li>
-      <li><a href="user.php?do=logout">退出</a></li>
+      <li><a href="user.php?do=member" data-ajax="false">个人资料</a></li>
+      <li><a href="user.php?do=setting" data-ajax="false">设置</a></li>
+      <li><a href="user.php?do=logout" data-ajax="false">退出</a></li>
     </ul>
   </div>
 </div>

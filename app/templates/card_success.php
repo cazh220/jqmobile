@@ -33,7 +33,7 @@
 	<label style="font-size:28px; font-weight: bold; position:absolute; left: 48%; margin-top: 20px">30</label>
 	<div class="to"></div>
 	<div style="text-align:center; padding:20px 0px 20px 0px">当前总积分：20000</div>
-	<a href="patient.php?user_id={$user.user_id}" data-role="button">完善患者信息</a>
+	<a href="patient.php?do=techrecord&user_id={$user.user_id}&qrcode=88888888" data-role="button" data-ajax="false">完善患者信息</a>
 	<a href="patient.php" data-role="button">继续录入</a>
   </div>
 </div>

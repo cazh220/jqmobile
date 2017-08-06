@@ -16,7 +16,7 @@
 
   <div data-role="content" data-theme="c">
 
-    <form method="post" action="user.php?do=register" data-ajax="false" enctype="multipart/form-data">
+    <form method="post" action="user.php?do=updateuser" data-ajax="false" enctype="multipart/form-data">
 		
 		<table width="100%">
 			<tr>
@@ -42,7 +42,7 @@
 				<td width="100%" colspan="2"><input type="text" name="job" id="job" placeholder="部门职位" value="{$mine.position}"></td>
 			</tr>
 			<tr>
-				<td width="100%" colspan="2"><input type="date" name="create_time" id="create_time" value="2014-01-13"></td>
+				<td width="100%" colspan="2"><input type="date" name="create_time" id="create_time" value="{$mine.birthday}"></td>
 			</tr>
 			<tr>
 				<td width="100%" colspan="2"><input type="text" name="employee_num" id="employee_num" placeholder="椅位数/员工数" value="{$mine.persons_num}"></td>
@@ -54,18 +54,26 @@
 						<select name="province" id="province">
 						{if $province}
 							{foreach from=$province item=item key=key}
-							<option value="{$item.id}" {if $item.province == $mine.province}checked{/if}>{$item.name}</option>
+							<option value="{$item.id}" {if $item.id == $mine.province}selected{/if}>{$item.name}</option>
 						    {/foreach}
 						{/if}
 						</select>
 
 						<label for="city">选择市：</label>
 						<select name="city" id="city">
-						  <option value="0">请选择</option>
+						{if $city}
+							{foreach from=$city item=item key=key}
+							<option value="{$item.id}" {if $item.id == $mine.city}selected{/if}>{$item.name}</option>
+						  {/foreach}
+						{/if}
 						</select>
 						<label for="district">选择区：</label>
 						<select name="district" id="district">
-						  <option value="0">请选择</option>
+						{if $district}
+							{foreach from=$district item=item key=key}
+							<option value="{$item.id}" {if $item.id == $mine.district}selected{/if}>{$item.name}</option>
+						  {/foreach}
+						{/if}
 						</select>
 					</fieldset>
 				</td>
@@ -74,18 +82,26 @@
 				<td width="100%" colspan="2"><input type="text" name="address" id="address" placeholder="详细地址" value="{$mine.company_addr}"></td>
 			</tr>
 			<tr>
+				<td width="20%">单位图片：</td>
+				<td width="80%"><img src="/public/upload/data/{$mine.head_img}" width="150px" height="150px"></td>
+			</tr>
+			<tr>
 				<td width="100%" colspan="2"><input type="file" name="cfile" id="cfile" value="单位图片"></td>
 			</tr>
 			<tr>
-				<td width="100%" colspan="2"><textarea name="addinfo" id="info" placeholder="单位介绍" value=""></textarea></td>
+				<td width="100%" colspan="2"><textarea name="addinfo" id="info" placeholder="单位介绍">{$mine.company_info}</textarea></td>
 			</tr>
 			
 			
 		</table>
 
-		<input type="submit" id="register" value="提交" >
-		<input type="hidden" id="mobile" name="mobile" value="{$mobile}" >
-		<input type="hidden" id="username" name="username" value="{$username}" >
+		<input type="button" id="perfect" value="提交" >
+		<input type="hidden" id="mobile" name="mobile" value="{$mine.mobile}" >
+		<input type="hidden" id="province" name="province" value="{$mine.province}" >
+		<input type="hidden" id="city" name="city" value="{$mine.city}" >
+		<input type="hidden" id="district" name="district" value="{$mine.district}" >
+		<input type="hidden" id="username" name="username" value="{$mine.username}" >
+		<input type="hidden" id="company_pic" name="company_pic" value="{$mine.head_img}" >
     </form>
   </div>
 </div>
@@ -135,21 +151,17 @@ function show(note)
 	//提示
   layer.open({
     content: note
-    ,skin: 'msg'
-    ,time: 2 //2秒后自动关闭
+    ,btn: '我知道了'
+    ,yes:function(){
+    	window.location.href="user.php?do=ucenter"
+    }
   });
 }
 
-$("#register").click(function(){
-	
-	var agree = $("#agree").attr("checked");
-	if (typeof(agree)=="undefined")
-	{
-	  show('请接受用户注册协议');
-		return false;
-	}
+$("#perfect").click(function(){
 	
 	
+		
 	var realname = $("#realname").val();
 	if (realname == '')
 	{
@@ -157,26 +169,7 @@ $("#register").click(function(){
 		return false;
 	}
 	
-	var password1 = $("#password1").val();
-	if (password1 == '')
-	{
-		show("请填写密码");
-		return false;
-	}
-	
-	var password2 = $("#password2").val();
-	if (password2 == '')
-	{
-		show("请填写确认密码");
-		return false;
-	}
-	
-	if (password2 != password1)
-	{
-		show("密码不一致");
-		return false;
-	}
-	
+		
 	var email = $("#email").val();
 	if (email == '')
 	{
@@ -226,7 +219,7 @@ $("#register").click(function(){
 		return false;
 	}
 	
-	var file = $("#cfile").val();
+	var file = $("#company_pic").val();
 	if (file == '')
 	{
 		show("请选择图片");
@@ -239,6 +232,39 @@ $("#register").click(function(){
 		show("请填写单位介绍");
 		return false;
 	}
+	
+	var user_type;
+	if($("#techer").attr("checked") == 'checked')
+	{
+		user_type = 1;
+	}
+	else
+	{
+		user_type = 2;
+	}
+	
+	var province;
+	province = $("#province").val();
+	var city;
+	city = $("#city").val();
+
+	
+	
+	var data = "realname="+realname+"&user_type="+user_type+"&email="+email+"&company_name="+company_name+"&job="+job+"&create_time="+create_time+"&employee_num="+employee_num+"&address="+address+"&company_pic="+file+"&info="+info+"&province="+province+"&city="+city+"&district="+district;
+	$.ajax({
+		type:"GET",
+		url:"user.php?do=updateuser",
+		data:data,
+		dataType:"json",
+		success:function(msg){
+			show(msg.message);
+			if(msg.status)
+			{
+				show(msg.message);
+				
+			}
+		}
+	});
 	
 });
 

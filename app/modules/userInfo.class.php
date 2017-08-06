@@ -76,7 +76,7 @@ class userInfo
     		return false;
     	}
 
-		$sql  = "INSERT INTO hg_user(username, mobile, realname, password, user_type, email, company_name, company_addr, department, position, persons_num, head_img, birthday, create_time, last_login, last_ip)VALUES('".$data['username']."','".$data['mobile']."','".$data['realname']."', '".md5($data['password'])."', '".$data['user_type']."', '".$data['email']."', '".$data['company_name']."','".$data['address']."', '','".$data['job']."', '".$data['employee_num']."', '".$data['pic']."','".$data['birthday']."','".$data['create_time']."','".$data['last_login']."','".$data['last_ip']."')";
+		$sql  = "INSERT INTO hg_user(username, mobile, realname, password, user_type, email, company_name, company_addr, department, position, persons_num, head_img, birthday, create_time, last_login, last_ip, province, city, district, company_info)VALUES('".$data['username']."','".$data['mobile']."','".$data['realname']."', '".md5($data['password'])."', '".$data['user_type']."', '".$data['email']."', '".$data['company_name']."','".$data['address']."', '','".$data['job']."', '".$data['employee_num']."', '".$data['pic']."','".$data['birthday']."','".$data['create_time']."','".$data['last_login']."','".$data['last_ip']."','".$data['province']."','".$data['city']."','".$data['district']."','".$data['desc']."')";
 		$res = $this->db->exec($sql);
     	
     	if($res === false) {
@@ -89,6 +89,32 @@ class userInfo
 			$logsqs=new LogSqs;
     		//return true;
     		return $this->db->getLastId();
+		}
+    	
+    	return false;
+	}
+	
+	//更新用户信息
+	public function update_user($data)
+	{
+		if($this->db == null){
+    		return false;
+    	}
+
+		$sql  = "UPDATE hg_user SET realname = '".$data['realname']."', user_type = {$data['user_type']}, email = '".$data['email']."', company_name = '".$data['company_name']."', company_addr = '".$data['address']."', head_img = '".$data['company_pic']."', company_info = '".$data['info']."', province = {$data['province']}, city = {$data['city']}, district = {$data['district']} WHERE user_id = {$data['user_id']}";
+		//echo $sql;die;
+		$res = $this->db->exec($sql);
+    	
+    	if($res === false) {
+    		return $this->_log(array( __CLASS__ . '.class.php line ' . __LINE__ , 'function '. __FUNCTION__ . ' sql execute false. sql = ' . $sql, date("Y-m-d H:i:s")));
+    	}
+    	
+    	if($res > 0 ){
+    		importModule('LogSqs');
+			
+			$logsqs=new LogSqs;
+    		//return true;
+    		return true;
 		}
     	
     	return false;
@@ -111,6 +137,7 @@ class userInfo
 		
 		return $res;
 	}
+	
 	
 	/**
 	 * 登录查询
@@ -200,6 +227,31 @@ class userInfo
     	
     	return false;
 	} 
+	
+	//意见反馈
+	public function feedback($user_id=0, $feedback='')
+	{
+		if($this->db == null){
+    		return false;
+    	}
+    	
+    	$sql = "INSERT INTO hg_feedback(user_id, content, create_time)VALUES($user_id, '".$feedback."', NOW()) ";
+    	//echo $sql;die;
+    	$res = $this->db->exec($sql);
+    	
+    	if($res === false) {
+    		return $this->_log(array( __CLASS__ . '.class.php line ' . __LINE__ , 'function '. __FUNCTION__ . ' sql execute false. sql = ' . $sql, date("Y-m-d H:i:s")));
+    	}
+    	
+    	if($res > 0 ){
+    		importModule('LogSqs');
+			
+			$logsqs=new LogSqs;
+    		return true;
+		}
+    	
+    	return false;
+	}
 	
 	/**
 	 * 数据更新失败记录日志，并标识操作失败

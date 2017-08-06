@@ -15,7 +15,7 @@ class SendSms {
 		import('util.RequestCurl');
 		$content = "您本次操作胡验证码为：".$code;
 		$param = '&userid='.self::$id.'&account='.self::$user.'&password='.self::$password.'&mobile='.$mobile.'&content='.$content.'&mobilenumber=1';
-		$url = self::$api_url.$param;echo $url;
+		$url = self::$api_url.$param;//echo $url;
 		$xmlfile = RequestCurl::curl_get($url);
 		$ob= simplexml_load_string($xmlfile);
 		return $ob;

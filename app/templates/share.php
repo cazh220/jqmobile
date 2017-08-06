@@ -3,15 +3,16 @@
 <head>
 <title>订单完成</title>
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="templates/css/style.css">
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
 </head>
 <style>
+{literal}
 .to{
 	width: 100px;
 	height: 100px;
-	background-image: url('images/kl.jpg');
+	/*background-image: url('images/kl.jpg');*/
 	background-size: cover;
 	display: block;
 	border-radius: 50px;
@@ -26,12 +27,13 @@
 .base_info{
 	padding:30px 0px;
 }
+{/literal}
 </style>
 <body>
 
 <div data-role="page">
   <div data-role="header" data-position="fixed"><a href="#" data-role="button" data-icon="arrow-l" data-rel="back">后退</a>
-  <h1>订单详情</h1>
+  <h1>防伪详情</h1>
   <a href="#popupMenu" data-rel="popup" data-transition="slideup" data-icon="gear">选项</a>
   <div data-role="popup" id="popupMenu" data-theme="b">
 	<ul data-role="listview" data-inset="true" style="min-width:20px">
@@ -46,25 +48,25 @@
   <div data-role="content" data-theme="c">
     <ul data-role="listview">
 		<li>
-			<div class="to"></div>
-			<div class="user_account">大**</div>
-			<div class="user_account">美晶瓷氧化锆义齿</div>
+			<div class="to" style="background-image: url('/public/upload/data/{$user.head_img}');"></div>
+			<div class="user_account">{$patient.wxname}</div>
+			<div class="user_account">{$patient.false_tooth_name}</div>
 		</li>
 		
 	</ul>
 	<ul data-role="listview">
 		<li>
-			<div><h4>医疗机构名称</h4></div>
-			<div class="content">沪鸽口腔</div>
-			<div><img src="images/kl.jpg" width="400px" height="300px"></div>
+			<div><h4>{$patient.hospital}</h4></div>
+			<div class="content">{$patient.doc.company_info}</div>
+			<div style="text-align: center;"><img src="/public/upload/data/{$patient.doc.head_img}" width="400px" height="300px"></div>
 		</li>
 		
 	</ul>
 	<ul data-role="listview">
 		<li>
-			<div><h4>医疗机构名称</h4></div>
-			<div class="content">沪鸽口腔</div>
-			<div><img src="images/kl.jpg" width="400px" height="300px"></div>
+			<div><h4>{$patient.production_unit}</h4></div>
+			<div class="content">{$patient.tech.company_info}</div>
+			<div style="text-align: center;"><img src="/public/upload/data/{$patient.tech.head_img}" width="400px" height="300px"></div>
 		</li>
 		
 	</ul>
@@ -73,7 +75,7 @@
   
 </div>
 <script type="text/javascipt">
-<script>
+{literal}
 var dataForWeixin = {
 appId: "",
 MsgImg: "http://chivashi.gotoip1.com/cover.jpg",
@@ -129,8 +131,7 @@ document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
 document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
 }
 })();
-</script>
-
+{/literal}
 </script>
 </body>
 

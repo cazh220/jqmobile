@@ -48,6 +48,43 @@ class PatientInfo
     		return $this->_log(array( __CLASS__ . '.class.php line ' . __LINE__ , 'function '. __FUNCTION__ . ' sql execute false. sql = ' . $sql, date("Y-m-d H:i:s")));
     	}
     	
+    	//增加积分
+    	$sql = "UPDATE hg_user SET total_credits = total_credits + ".$data['credits']." WHERE user_id = ".$data['user_id'];
+    	
+    	$res = $this->db->exec($sql);
+    	
+    	if($res === false) {
+    		return $this->_log(array( __CLASS__ . '.class.php line ' . __LINE__ , 'function '. __FUNCTION__ . ' sql execute false. sql = ' . $sql, date("Y-m-d H:i:s")));
+    	}
+    	
+    	if($res > 0 ){
+    		importModule('LogSqs');
+			
+			$logsqs=new LogSqs;
+    		return true;
+    		//return $this->db->getLastId();
+		}
+    	
+    	return false;
+    }
+    
+    //更新病人
+    public function update_patient($data)
+    {
+    	if($this->db == null)
+		{
+    		return false;
+    	}
+
+    	$sql  = "UPDATE hg_patient SET name='".$data['patient_name']."', sex='".$data['sex']."',birthday='".$data['patient_age']."',hospital='".$data['hospital']."',doctor='".$data['doctor']."',tooth_position='".$data['tooth_position']."', false_tooth='".$data['false_tooth']."', repairosome_pic='".$data['repaire_pic']."' WHERE security_code = '".$data['security_code']."'";
+    	//echo $sql;die;
+		$res = $this->db->exec($sql);
+    	
+    	if($res === false) {
+    		return $this->_log(array( __CLASS__ . '.class.php line ' . __LINE__ , 'function '. __FUNCTION__ . ' sql execute false. sql = ' . $sql, date("Y-m-d H:i:s")));
+    	}
+    	
+    	
     	if($res > 0 ){
     		importModule('LogSqs');
 			
@@ -68,8 +105,8 @@ class PatientInfo
 	    		return false;
 	    	}
 	
-	    	$sql = "SELECT * FROM hg_patient WHERE security_code = '".$qrcode."'";
-	
+	    	$sql = "SELECT * FROM hg_patient a LEFT JOIN hg_false_tooth b ON a.false_tooth = b.false_tooth_id WHERE security_code = '".$qrcode."'";
+			
 	    	$res = $this->db->getArray($sql);
 	
 	    	if($res === false){
@@ -82,6 +119,31 @@ class PatientInfo
     	{
     		return false;
     	}
+    }
+    
+    //获取患者列表
+    public function patient_list($data)
+    {
+    	if($this->db == null){
+    		return false;
+    	}
+		
+    	$sql = "SELECT * FROM hg_patient WHERE is_delete = 0 ";
+		if($data['hospital'])
+		{
+			$sql .= " AND hospital LIKE '%".$data['hospital']."%'";
+		}
+		$start = ($data['page']-1)*$data['page_size'];
+		$page_size = $data['page_size'];
+		$sql .= " LIMIT $start,$page_size";
+		
+    	$res = $this->db->getArray($sql);
+
+    	if($res === false){
+			return $this->_log(array( __CLASS__ . '.class.php line ' . __LINE__ , 'function '. __FUNCTION__ . ' sql execute false. sql = ' . $sql, date("Y-m-d H:i:s")));
+		}
+		
+		return $res;
     }
 	
 	

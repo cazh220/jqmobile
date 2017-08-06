@@ -8,16 +8,11 @@
 <body>
 <div data-role="page" id="pageone">
   <div data-role="header"><a href="#" data-role="button" data-icon="arrow-l" data-rel="back">后退</a>
-  <h1>设置</h1>
-  <a href="#pagetwo" data-role="button" data-icon="alert">12</a>
+  <h1>关于沪鸽</h1>
   </div>
 
   <div data-role="content" data-theme="d">
-	<ul data-role="listview">
-      <li><a href="index.php?do=feedback">意见反馈</a></li>
-      <li><a href="index.php?do=about">关于沪鸽</a></li>
-      <li><a href="user.php?do=logout">退出</a></li>
-    </ul>
+		<h3>关于沪鸽</h3>
   </div>
 </div>
 

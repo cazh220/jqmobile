@@ -62,6 +62,7 @@ class MessageInfo
     	
     	$res = 0;
     	$sql = "SELECT count(*) as num FROM hg_message WHERE to_user_id = {$user_id} AND is_delete = 0";
+
     	$res = $this->db->getValue($sql);
 
     	if($res === false){
