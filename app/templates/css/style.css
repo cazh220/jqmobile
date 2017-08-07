@@ -2,8 +2,7 @@
  *  样式
  */
 .product {
-	text-align:left;
-	margin-left:40px;
+	margin: 0 auto;
 	font-size:12px;
 }
 a {
@@ -81,7 +80,7 @@ th{
 .member_content_table{
 	text-align: center;
 	font-size: 14px;
-	line-height: 25px;
+	line-height: 35px;
 }
 
 *{text-decoration: none;margin: 0;padding: 0;list-style: none;}

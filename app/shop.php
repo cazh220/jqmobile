@@ -20,8 +20,13 @@ class shop extends Action {
 		
 		$page = $this->app->page();
 		//print_r($_SESSION);
+		//获取积分用户信息
+		importModule("userInfo","class");
+		$obj_user = new userInfo;
+		$user = $obj_user->get_user_detail($_SESSION['user_id']);
+	
 		$page->value('list', $products);
-		$page->value('user',$_SESSION);
+		$page->value('user',$user[0]);
 		$page->params['template'] = 'shop.php';
 		$page->output();
 	}

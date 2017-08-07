@@ -37,7 +37,7 @@
   <div data-role="content" data-theme="d">
     <div class="to" style="background-image: url('/public/upload/data/{$user.head_img}');"></div>
 	<div class="user_account">{$user.mobile}</div>
-	<div class="base_info"><label style="margin-left:0px">已录入：{$user.exchanged_credits}</label><label style="float:right">积分余额：{$user.left_credits}</label></div>
+	<div class="base_info"><label style="margin-left:0px">已录入：{$user.total_credits}</label><label style="float:right">积分余额：{$user.left_credits}</label></div>
 	
 	<div style="height:40px"></div>
 	<ul data-role="listview">
