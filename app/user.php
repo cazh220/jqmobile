@@ -185,7 +185,12 @@ class user extends Action {
 	{
 		$user_id = $_GET['user_id'];
 		$qrcode = $_GET['qrcode'];
-		//print_r($_SESSION);
+		if(empty($qrcode))
+		{
+			echo "<script>history.go(-1)</script>";
+			return false;
+		}
+		
 		$page = $this->app->page();
 		$page->value('user_id',$user_id);
 		$page->value('qrcode',$qrcode);

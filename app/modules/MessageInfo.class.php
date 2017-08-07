@@ -41,7 +41,7 @@ class MessageInfo
     		return false;
     	}
     	
-    	$sql = "SELECT *,a.create_time as send_time,c.create_time as record_time FROM hg_message a LEFT JOIN hg_user b ON a.from_user_id = b.user_id  LEFT JOIN hg_patient c ON a.qrcode = c.security_code WHERE to_user_id = {$user_id} AND is_delete = 0";
+    	$sql = "SELECT *,a.create_time as send_time,c.create_time as record_time FROM hg_message a LEFT JOIN hg_user b ON a.from_user_id = b.user_id  LEFT JOIN hg_patient c ON a.qrcode = c.security_code WHERE a.to_user_id = {$user_id} AND a.is_delete = 0";
     	//echo $sql;die;
     	$res = $this->db->getArray($sql);
 	
