@@ -1,3 +1,5 @@
+<?php /* Smarty version 2.6.10, created on 2017-08-07 15:58:38
+         compiled from user.php */ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +8,7 @@
 <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
 </head>
 <style>
-{literal}
+<?php echo '
 .to{
 	width: 100px;
 	height: 100px;
@@ -25,7 +27,8 @@
 .base_info{
 	padding:30px 0px;
 }
-{/literal}
+'; ?>
+
 </style>
 <body>
 <div data-role="page" id="pageone">
@@ -35,23 +38,31 @@
   </div>
 
   <div data-role="content" data-theme="d">
-    <div class="to" style="background-image: url('/public/upload/data/{$user.head_img}');"></div>
-	<div class="user_account">{$user.mobile}</div>
-	<div class="base_info"><label style="margin-left:0px">已录入：{$user.total_credits}</label><label style="float:right">积分余额：{$user.left_credits}</label></div>
+    <div class="to" style="background-image: url('/public/upload/data/<?php echo $this->_tpl_vars['user']['head_img']; ?>
+');"></div>
+	<div class="user_account"><?php echo $this->_tpl_vars['user']['mobile']; ?>
+</div>
+	<div class="base_info"><label style="margin-left:0px">已录入：<?php echo $this->_tpl_vars['user']['total_credits']; ?>
+</label><label style="float:right">积分余额：<?php echo $this->_tpl_vars['user']['left_credits']; ?>
+</label></div>
 	
 	<div style="height:40px"></div>
 	<ul data-role="listview">
       <li><a href="member.php">录入查询</a></li>
-      {if $user.user_type==1}
-      <li><a href="user.php?do=patientin&user_id={$user.user_id}">质保卡积分录入</a></li>
-      {else}
-      <li><a href="user.php?do=doctorin&user_id={$user.user_id}">质保卡积分录入</a></li>
-      {/if}
+      <?php if ($this->_tpl_vars['user']['user_type'] == 1): ?>
+      <li><a href="user.php?do=patientin&user_id=<?php echo $this->_tpl_vars['user']['user_id']; ?>
+">质保卡积分录入</a></li>
+      <?php else: ?>
+      <li><a href="user.php?do=doctorin&user_id=<?php echo $this->_tpl_vars['user']['user_id']; ?>
+">质保卡积分录入</a></li>
+      <?php endif; ?>
       
     </ul>
 	<div style="height:80px"></div>
 	<ul data-role="listview">
-	  <li><a href="message.php?user={$user.user_id}" data-ajax="false">我的消息{if $message_count > 0}<span class="ui-li-count">{$message_count}</span>{/if}</a></li>
+	  <li><a href="message.php?user=<?php echo $this->_tpl_vars['user']['user_id']; ?>
+" data-ajax="false">我的消息<?php if ($this->_tpl_vars['message_count'] > 0): ?><span class="ui-li-count"><?php echo $this->_tpl_vars['message_count']; ?>
+</span><?php endif; ?></a></li>
       <li><a href="order.php?do=myorder" data-ajax="false">我的订单</a></li>
       <li><a href="shop.php">积分兑换</a></li>
     </ul>

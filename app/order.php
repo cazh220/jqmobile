@@ -36,10 +36,16 @@ class order extends Action {
 		importModule("ShopInfo","class");
 		$obj_shop = new ShopInfo;
 		$products = $obj_shop->get_product_list($id);
-
+		//获取积分
+		importModule("userInfo","class");
+		$obj_user = new userInfo;
+		$user = $obj_user->get_user_detail($_SESSION['user_id']);
+		$left_credits = $user[0]['left_credits'];
+		
 		$page = $this->app->page();
 		$page->value('list', $products);
 		$page->value('user',$_SESSION);
+		$page->value('left_credits',$left_credits);
 		$page->params['template'] = 'order_detail.php';
 		$page->output();
 	}

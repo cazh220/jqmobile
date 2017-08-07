@@ -122,6 +122,7 @@ class user extends Action {
 				'last_ip'	=> $s_ip
 			);
 			
+			
 			importModule("userInfo","class");
 			$obj_user = new userInfo;
 			$user_id = $obj_user->insert_user($data);
@@ -395,7 +396,7 @@ class user extends Action {
 		$city = $obj_area->get_city($user[0]['province']);
 		//获取区域
 		$district = $obj_area->get_district($user[0]['city']);
-		//print_r($user);
+		
 		$page = $this->app->page();
 		$page->value('mine',$user[0]);
 		$page->value('province',$province);
