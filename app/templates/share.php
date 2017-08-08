@@ -2,10 +2,13 @@
 <html>
 <head>
 <title>订单完成</title>
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+<link rel="stylesheet" href="public/mobile_themes/themes/skyd.min.css" />
+<link rel="stylesheet" href="public/mobile_themes/themes/jquery.mobile.icons.min.css" />
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.3/jquery.mobile.structure-1.4.3.min.css" />
 <link rel="stylesheet" href="templates/css/style.css">
-<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
+<script src="public/layer_mobile/layer.js"></script>
 </head>
 <style>
 {literal}
@@ -31,8 +34,8 @@
 </style>
 <body>
 
-<div data-role="page">
-  <div data-role="header" data-position="fixed"><a href="#" data-role="button" data-icon="arrow-l" data-rel="back">后退</a>
+<div data-role="page"  data-theme="d">
+  <div data-role="header" data-position="fixed"><a href="#" class="ui-btn ui-corner-all ui-icon-carat-l ui-btn-icon-notext" data-rel="back">后退</a>
   <h1>防伪详情</h1>
   <a href="#popupMenu" data-rel="popup" data-transition="slideup" data-icon="gear">选项</a>
   <div data-role="popup" id="popupMenu" data-theme="b">
@@ -45,7 +48,7 @@
   </div>
   
 
-  <div data-role="content" data-theme="c">
+  <div data-role="content">
     <ul data-role="listview">
 		<li>
 			<div class="to" style="background-image: url('/public/upload/data/{$user.head_img}');"></div>

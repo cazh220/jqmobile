@@ -162,7 +162,7 @@ class patient extends Action {
 			}
 		}
 		
-		//print_r($patient);die;
+		//print_r($data);die;
 		$page = $this->app->page();
 		$page->value('user',$_SESSION);
 		$page->value('credits',self::$credits);

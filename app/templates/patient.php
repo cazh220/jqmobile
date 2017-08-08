@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
-<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+<link rel="stylesheet" href="public/mobile_themes/themes/skyd.min.css" />
+<link rel="stylesheet" href="public/mobile_themes/themes/jquery.mobile.icons.min.css" />
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.3/jquery.mobile.structure-1.4.3.min.css" />
+<link rel="stylesheet" href="templates/css/style.css">
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
 <script src="public/layer_mobile/layer.js"></script>
 </head>
 <body>
 
-<div data-role="page">
-  <div data-role="header">
-  <div data-role="header"><a href="#" data-role="button" data-icon="arrow-l" data-rel="back">后退</a>
+<div data-role="page" data-theme="p">
+  <div data-role="header"><a href="#" class="ui-btn ui-corner-all ui-icon-carat-l ui-btn-icon-notext" data-rel="back">后退</a>
   <h1>技工录入</h1>
   </div>
 
-  <div data-role="content" data-theme="c">
+  <div data-role="content">
     <form id="patient_form" method="post" action="patient.php?do=addpatient" data-ajax="false" enctype="multipart/form-data">
       <div data-role="fieldcontain">
       	<div style="height: 50px; text-align: right; width: 25%; float: left; line-height: 50px">医疗机构：</div><div style="height: 50px; text-align: center; width: 75%; float: left; line-height: 50px"><input type="text" name="hospital" id="hospital" placeholder="医疗机构"></div>

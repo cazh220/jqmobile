@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
+<link rel="stylesheet" href="public/mobile_themes/themes/skyd.min.css" />
+<link rel="stylesheet" href="public/mobile_themes/themes/jquery.mobile.icons.min.css" />
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.3/jquery.mobile.structure-1.4.3.min.css" />
 <link rel="stylesheet" href="templates/css/style.css">
-<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
 <script src="public/layer_mobile/layer.js"></script>
 </head>
 <script type="text/javascript">
@@ -67,13 +69,13 @@ $(function(){
 </script>
 <body>
 
-<div data-role="page">
-  <div data-role="header" data-position="fixed"><a href="#" data-role="button" data-icon="arrow-l" data-rel="back" data-ajax="false">后退</a>
+<div data-role="page" data-theme="p">
+  <div data-role="header" data-position="fixed"><a href="#" class="ui-btn ui-corner-all ui-icon-carat-l ui-btn-icon-notext" data-rel="back" data-ajax="false">后退</a>
   <h1>积分商城</h1>
   </div>
   
 
-  <div data-role="content" data-theme="c">
+  <div data-role="content">
     <form method="post" action="">
       
 	   <div class="ui-grid-a">
@@ -121,7 +123,7 @@ $(function(){
 			<li><a href="#">Two</a></li>
 		</ul>
 	</div>-->
-	<div style="line-height:40px; font-size:12px; width:60%; float:left;">可用积分：<span id="able_jf">{$user.total_credits}</span>  兑换所需积分：<span id="need_jf">0</span></div><div id="exchange" style="line-height:40px; float:left; width:40%; text-align:center; background-color:#FF7F00">立即兑换</div>
+	<div style="line-height:40px; font-size:12px; width:60%; float:left;">可用积分：<span id="able_jf">{$user.total_credits}</span>  兑换所需积分：<span id="need_jf">0</span></div><div id="exchange" style="line-height:40px; float:left; width:40%; text-align:center; background-color:#FF7F00; color: #000000;">立即兑换</div>
   </div>
   
     <!--<div data-role="footer" data-position="fixed">

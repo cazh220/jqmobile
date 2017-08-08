@@ -28,7 +28,13 @@ class member extends Action {
 		importModule("PatientInfo","class");
 		$obj_patient = new PatientInfo;
 		$list = $obj_patient->patient_list($data);
-		
+		if(!empty($list))
+		{
+			foreach($list as $key => $val)
+			{
+				$list[$key]['create_time'] = date("Y/m/d", strtotime($val['create_time']));
+			}
+		}
 		$page = $this->app->page();
 		$page->value('user_list',$_SESSION);
 		$page->value('list',$list);
