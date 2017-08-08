@@ -36,6 +36,16 @@ class order extends Action {
 		importModule("ShopInfo","class");
 		$obj_shop = new ShopInfo;
 		$products = $obj_shop->get_product_list($id);
+		//需要的积分
+		$need_credits = 0;
+		if(!empty($products))
+		{
+			foreach($products as $key => $val)
+			{
+				$need_credits += $val['credits'];
+			}
+		}
+
 		//获取积分
 		importModule("userInfo","class");
 		$obj_user = new userInfo;
@@ -46,6 +56,7 @@ class order extends Action {
 		$page->value('list', $products);
 		$page->value('user',$_SESSION);
 		$page->value('left_credits',$left_credits);
+		$page->value('need_credits',$need_credits);
 		$page->params['template'] = 'order_detail.php';
 		$page->output();
 	}
@@ -53,8 +64,6 @@ class order extends Action {
 	//生成订单
 	public function doCreateOrder()
 	{
-		//print_r($_POST);
-		//print_r($_SESSION);die;
 		$gift_id_arr = $_POST['gift_id'];
 		$gift_num    = $_POST['gift_num'];
 		
@@ -71,7 +80,7 @@ class order extends Action {
 		foreach($gift_id_arr as $key => $value)
 		{
 			$gift_detail = $obj_shop->get_gift_detail($value);
-
+			
 			$order_goods[] = array(
 				'order_id'	=> 1,
 				'gift_id'	=> $value,
@@ -80,9 +89,9 @@ class order extends Action {
 				'price'		=> $gift_detail['credits'],
 				'gift_pic'	=> $gift_detail['gift_photo'],
 			);
-			$total_credits += $price*$gift_num[$key];
+			
+			$total_credits += $gift_detail['credits']*$gift_num[$key];
 		}
-		
 		$user_id = $_SESSION['user_id'];
 		$user_name = $_SESSION['username'];
 		//生成订单基本信息
@@ -114,6 +123,11 @@ class order extends Action {
 	public function doOrderSuccess()
 	{
 		$order_no = $_GET['order_no'];
+		//获取会员积分余额
+		importModule("userInfo","class");
+		$obj_user = new userInfo;
+		$left_credits = $obj_user->get_user_credits($_SESSION['user_id']);
+		
 		importModule("OrderInfo","class");
 		$obj_order = new OrderInfo;
 		$data = $obj_order->get_order_info($order_no);
@@ -131,12 +145,14 @@ class order extends Action {
 			'info'			=> $info,
 			'left_credits'	=> $_SESSION['left_credits']
 		);
-		
+
 		//获取订单信息
 		$page = $this->app->page();
-		//print_r($_SESSION);
+		
 		$page->value('info', $order_info);
 		$page->value('user',$_SESSION);
+		$page->value('used_credits',$data[0]['total_credits']);
+		$page->value('left_credits',$left_credits);
 		$page->params['template'] = 'order_success.php';
 		$page->output();
 	}

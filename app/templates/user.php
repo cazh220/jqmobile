@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css">
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+<script src="public/layer_mobile/layer.js"></script>
+
 </head>
 <style>
 {literal}
@@ -41,11 +43,11 @@
 	
 	<div style="height:40px"></div>
 	<ul data-role="listview">
-      <li><a href="member.php">录入查询</a></li>
+      <li><a href="member.php" data-ajax="false">录入查询</a></li>
       {if $user.user_type==1}
-      <li><a href="user.php?do=patientin&user_id={$user.user_id}">质保卡积分录入</a></li>
+      <li><a href="user.php?do=patientin&user_id={$user.user_id}" data-ajax="false">质保卡积分录入</a></li>
       {else}
-      <li><a href="user.php?do=doctorin&user_id={$user.user_id}">质保卡积分录入</a></li>
+      <li><a href="user.php?do=doctorin&user_id={$user.user_id}" data-ajax="false">质保卡积分录入</a></li>
       {/if}
       
     </ul>
@@ -53,7 +55,7 @@
 	<ul data-role="listview">
 	  <li><a href="message.php?user={$user.user_id}" data-ajax="false">我的消息{if $message_count > 0}<span class="ui-li-count">{$message_count}</span>{/if}</a></li>
       <li><a href="order.php?do=myorder" data-ajax="false">我的订单</a></li>
-      <li><a href="shop.php">积分兑换</a></li>
+      <li><a href="shop.php" data-ajax="false">积分兑换</a></li>
     </ul>
 	
 	<div style="height:80px"></div>

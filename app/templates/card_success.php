@@ -18,23 +18,62 @@
 	-moz-border-radius:50px;
 	margin:0 auto;
 }
+.record_header{
+	width: 25%;
+	float: left;
+	line-height: 30px;
+	text-align: center;
+	font-weight: bold;
+}
+.record_content{
+	width: 25%;
+	float: left;
+	line-height: 30px;
+	text-align: center;
+}
 {/literal}
 </style>
 <body>
 
 <div data-role="page">
   <div data-role="header">
-  <div data-role="header"><a href="#" data-role="button" data-icon="arrow-l" data-rel="back">后退</a>
+  <div data-role="header"><a href="#" data-role="button" data-icon="arrow-l" data-rel="back" data-ajax="false">后退</a>
   <h1>质保卡录入</h1>
   </div>
 
   <div data-role="content" data-theme="b">
     <div style="text-align:center; padding:10px 0px 20px 0px">恭喜！录入完成</div>
-	<label style="font-size:28px; font-weight: bold; position:absolute; left: 48%; margin-top: 20px">30</label>
+	<label style="font-size:28px; font-weight: bold; position:absolute; left: 48%; margin-top: 20px">{$credits}</label>
 	<div class="to"></div>
-	<div style="text-align:center; padding:20px 0px 20px 0px">当前总积分：20000</div>
-	<a href="patient.php?do=techrecord&user_id={$user.user_id}&qrcode=88888888" data-role="button" data-ajax="false">完善患者信息</a>
+	<div style="text-align:center; padding:20px 0px 20px 0px">当前总积分：{$left_credits}</div>
+	<a href="patient.php?do=techrecord&user_id={$user.user_id}&qrcode=22334455" data-role="button" data-ajax="false">完善患者信息</a>
 	<a href="patient.php" data-role="button">继续录入</a>
+	
+	
+	<div style="height: 200px;"></div>
+	<div>
+		<div class="record_header">日期</div>
+		<div class="record_header">卡号</div>
+		<div class="record_header">医院</div>
+		<div class="record_header">医生</div>
+	</div>
+	<hr>
+	<div>
+		<marquee direction="up" behavior="scroll" scrollamount="1" height="120px" loop="-1">
+		{if $patient}
+		{foreach from=$patient item=item key=key}
+			<div>
+			<div class="record_content">{$item.create_time}</div>
+			<div class="record_content">{$item.security_code}</div>
+			<div class="record_content">{$item.hospital}</div>
+			<div class="record_content">{$item.doctor}</div>
+			</div>
+		{/foreach}
+		{/if}
+		</marquee>
+	</div>
+	
+	
   </div>
 </div>
 

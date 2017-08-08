@@ -141,8 +141,33 @@ class patient extends Action {
 	//录入成功
 	public function doRecordSuccess()
 	{
+		//积分详情
+		importModule("userInfo","class");
+		$obj_user = new userInfo;
+		$left_credits = $obj_user->get_user_credits($_SESSION['user_id']);
+		
+		//获取最近录入的信息
+		importModule("PatientInfo","class");
+		$obj_patient = new PatientInfo;
+		$patient = $obj_patient->patient_list(array('page'=>1, 'page_size'=>10));
+		$data = array();
+		if(!empty($patient))
+		{
+			foreach($patient as $key => $val)
+			{
+				$data[$key]['create_time'] = date("Y/m/d", strtotime($val['create_time']));
+				$data[$key]['security_code'] = $val['security_code'];
+				$data[$key]['hospital'] = $val['hospital'];
+				$data[$key]['doctor'] = $val['doctor'];
+			}
+		}
+		
+		//print_r($patient);die;
 		$page = $this->app->page();
 		$page->value('user',$_SESSION);
+		$page->value('credits',self::$credits);
+		$page->value('left_credits',$left_credits);
+		$page->value('patient',$data);
 		$page->params['template'] = 'card_success.php';
 		$page->output();
 	}

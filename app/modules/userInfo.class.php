@@ -138,6 +138,22 @@ class userInfo
 		return $res;
 	}
 	
+	//获取会员积分
+	public function get_user_credits($user_id)
+	{
+		if($this->db == null){
+    		return false;
+    	}
+    	$sql = "SELECT left_credits FROM hg_user WHERE user_id = {$user_id}";
+    	$res = $this->db->getValue($sql);
+    	
+    	if($res === false){
+			return $this->_log(array( __CLASS__ . '.class.php line ' . __LINE__ , 'function '. __FUNCTION__ . ' sql execute false. sql = ' . $sql, date("Y-m-d H:i:s")));
+		}
+		
+		return $res;
+	}
+	
 	
 	/**
 	 * 登录查询

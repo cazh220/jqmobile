@@ -27,9 +27,9 @@ function plus(id, price)
 	num++;
 	$("#buy_num_"+id).html(num);
 	$("#gift_num_"+id).val(num);
-	var credits = 0;
+
 	credits = parseInt($("#need_credits").val());
-	credits += parseFloat(price*num);
+	credits += parseFloat(price);
 	
 	$("#need_credits").val(credits);
 }
@@ -46,12 +46,27 @@ function subplus(id, price)
 	$("#buy_num_"+id).html(num);
 	$("#gift_num_"+id).val(num);
 	var credits =parseInt( $("#need_credits").val());
-	credits -= parseFloat(price*num);
+	credits -= parseFloat(price);
 	$("#need_credits").val(credits);
 }
 
 $(function(){
 	$(".create_order").click(function(){
+		//检查积分
+		var left_credits = $("#left_credits").val();
+		var need_credits = $("#need_credits").val();
+		
+		if(need_credits==0)
+		{
+			show("请选择数量");
+			return false;
+		}
+		else if(left_credits < need_credits)
+		{
+			show("积分余额不足");
+			return false;
+		}
+
 		//检查表单
 		var receiver = $("#receiver").val();
 		var mobile = $("#mobile").val();
@@ -72,7 +87,6 @@ $(function(){
 			return false;
 		}
 		
-		var left_credits = $("#$left_credits").val();
 		
 		
 		
@@ -118,7 +132,7 @@ $(function(){
 			<tr><td>收货地址：</td><td><input type="text" name="address" id="address" value="" data-min="true" placeholder="默认单位地址"></td></tr></table></li>
 		</ul>
        <input type="hidden" id="left_credits" name="left_credits" value="{$left_credits}"/>
-       <input type="hidden" id="need_credits" name="need_credits" value="0"/>
+       <input type="hidden" id="need_credits" name="need_credits" value="{$need_credits}"/>
     </form>
   </div>
   

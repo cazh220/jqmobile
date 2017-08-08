@@ -22,7 +22,7 @@
 			<li>
 				<div class="list_order_success">
 					<div class="title"><img src="templates/images/fill_finish.png" width="20px" height="20px"><span class="text_title">{$info.create_time}您的订单（订单号：{$info.order_no}）</span></div>
-					<div class="order_content">{$info.info}已成功提交；扣除积分{$info.total_credits}，当前可用积分{$info.left_credits}；积分信息请前往会员中心查看</div>
+					<div class="order_content">{$info.info}已成功提交；扣除积分{$used_credits}，当前可用积分{$left_credits}；积分信息请前往会员中心查看</div>
 				</div>
 			</li>
 			

@@ -68,7 +68,7 @@ $(function(){
 <body>
 
 <div data-role="page">
-  <div data-role="header" data-position="fixed"><a href="#" data-role="button" data-icon="arrow-l" data-rel="back">后退</a>
+  <div data-role="header" data-position="fixed"><a href="#" data-role="button" data-icon="arrow-l" data-rel="back" data-ajax="false">后退</a>
   <h1>积分商城</h1>
   </div>
   
@@ -85,17 +85,17 @@ $(function(){
 		 			<td colspan="3" style="text-align: center;"><img src="http://huge.com/public/uploads/{$item.gift_photo}" width="180px" height="130px"></td>
 		 		</tr>
 		 		<tr>
-		 			<td style="text-align: right; width: 30%;">产品名称:</td>
+		 			<td style="text-align: right; width: 30%; line-height: 25px;">产品名称:</td>
 		 			<td colspan="2" style="text-align: left;">{$item.gift_name}</td>
 		 		</tr>
 		 		<tr>
-		 			<td style="text-align: right;">产品规则:</td>
+		 			<td style="text-align: right; line-height: 25px;">产品规则:</td>
 		 			<td colspan="2" style="text-align: left;">{$item.stanard}</td>
 		 		</tr>
 		 		<tr>
-		 			<td style="text-align: right;">兑换积分:</td>
+		 			<td style="text-align: right; line-height: 25px;">兑换积分:</td>
 		 			<td style="text-align: left;">{$item.credits}</td>
-		 			<td><input type="checkbox" class="goods_check" value="{$item.gift_id}" data-id="{$item.credits}" style="position: static; margin-top: 0px; margin-left: 10px; float: left;">选择</td>
+		 			<td><input type="checkbox" class="goods_check" value="{$item.gift_id}" data-id="{$item.credits}" style="position: static; margin-top: 0px; margin-left: 10px; float: left; zoom: 150%;">选择</td>
 		 			
 		 		</tr>
 		 	</table>

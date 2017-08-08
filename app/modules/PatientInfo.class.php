@@ -40,32 +40,30 @@ class PatientInfo
 		{
     		return false;
     	}
-
+		
+		$this->db->exec("START TRANSACTION");
     	$sql  = "INSERT INTO hg_patient(name, sex, birthday, hospital, doctor, tooth_position, production_unit, create_time, operator, false_tooth, repairosome_pic, security_code, mobile, email, update_time)VALUES('".$data['name']."', '".$data['sex']."', '".$data['birthday']."', '".$data['hospital']."', '".$data['doctor']."','".$data['tooth_position']."', '".$data['production_unit']."','".$data['create_time']."', '".$data['operator']."', '".$data['false_tooth']."', '".$data['repaire_pic']."','".$data['security_code']."','".$data['mobile']."','".$data['email']."','".$data['update_time']."')";
 		$res = $this->db->exec($sql);
     	
     	if($res === false) {
-    		return $this->_log(array( __CLASS__ . '.class.php line ' . __LINE__ , 'function '. __FUNCTION__ . ' sql execute false. sql = ' . $sql, date("Y-m-d H:i:s")));
+    		$this->db->exec("ROLLBACK");
+    		$this->_log(array( __CLASS__ . '.class.php line ' . __LINE__ , 'function '. __FUNCTION__ . ' sql execute false. sql = ' . $sql, date("Y-m-d H:i:s")));
+    		return false;
     	}
     	
     	//增加积分
-    	$sql = "UPDATE hg_user SET total_credits = total_credits + ".$data['credits']." WHERE user_id = ".$data['user_id'];
+    	$sql = "UPDATE hg_user SET total_credits = total_credits + ".$data['credits'].", left_credits = left_credits + ".$data['credits']." WHERE user_id = ".$data['user_id'];
     	
     	$res = $this->db->exec($sql);
     	
     	if($res === false) {
-    		return $this->_log(array( __CLASS__ . '.class.php line ' . __LINE__ , 'function '. __FUNCTION__ . ' sql execute false. sql = ' . $sql, date("Y-m-d H:i:s")));
+    		$this->db->exec("ROLLBACK");
+    		$this->_log(array( __CLASS__ . '.class.php line ' . __LINE__ , 'function '. __FUNCTION__ . ' sql execute false. sql = ' . $sql, date("Y-m-d H:i:s")));
+    		return false;
     	}
     	
-    	if($res > 0 ){
-    		importModule('LogSqs');
-			
-			$logsqs=new LogSqs;
-    		return true;
-    		//return $this->db->getLastId();
-		}
-    	
-    	return false;
+    	$this->db->exec("COMMIT");
+    	return true;
     }
     
     //更新病人
@@ -133,6 +131,7 @@ class PatientInfo
 		{
 			$sql .= " AND hospital LIKE '%".$data['hospital']."%'";
 		}
+		$sql .= " ORDER BY patient_id DESC ";
 		$start = ($data['page']-1)*$data['page_size'];
 		$page_size = $data['page_size'];
 		$sql .= " LIMIT $start,$page_size";

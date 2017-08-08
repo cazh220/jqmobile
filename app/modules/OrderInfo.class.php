@@ -42,7 +42,7 @@ class OrderInfo
     	}	
     	
     	$this->db->exec("START TRANSACTION");
-    	$sql = "INSERT INTO hg_order(order_no, user_id, username, address, consignee, mobile, total_credits, create_time)VALUES('".$order['order_no']."','".$order['user_id']."','".$order['username']."','".$order['address']."','".$order['consignee']."','".$order['mobile']."','".$order['totalcredits']."','".$order['create_time']."')";
+    	$sql = "INSERT INTO hg_order(order_no, user_id, username, address, consignee, mobile, total_credits, create_time)VALUES('".$order['order_no']."','".$order['user_id']."','".$order['username']."','".$order['address']."','".$order['consignee']."','".$order['mobile']."','".$order['total_credits']."','".$order['create_time']."')";
 
     	$res = $this->db->exec($sql);
     	$order_id = $this->db->getLastId();
@@ -64,8 +64,18 @@ class OrderInfo
     			return false;
     		}
     	}
-    	$this->db->exec("COMMIT");
     	
+    	//扣积分
+    	$sql = "UPDATE hg_user SET exchanged_credits = exchanged_credits + {$order['total_credits']}, left_credits = left_credits - {$order['total_credits']} WHERE user_id = {$order['user_id']}";
+    	
+    	$up_res = $this->db->exec($sql);
+		if(empty($up_res))
+		{
+			$this->db->exec("ROLLBACK");
+			return false;
+		}
+    	
+    	$this->db->exec("COMMIT");
     	return true;
     }
     
@@ -76,10 +86,9 @@ class OrderInfo
 		{
     		return false;
     	}
-		$sql = "SELECT * FROM hg_order a LEFT JOIN hg_order_gift b ON a.order_id = b.order_id WHERE a.order_no ='".$order_no."'";
-		
+		$sql = "SELECT *,a.order_no FROM hg_order a LEFT JOIN hg_order_gift b ON a.order_id = b.order_id WHERE a.order_no ='".$order_no."'";
 		$res = $this->db->getArray($sql);
-		
+
 		if($res === false){
 			return $this->_log(array( __CLASS__ . '.class.php line ' . __LINE__ , 'function '. __FUNCTION__ . ' sql execute false. sql = ' . $sql, date("Y-m-d H:i:s")));
 		}

@@ -16,40 +16,47 @@
   
 
   <div data-role="content" data-theme="c">
-    <div class="blank"></div>
-    <form method="post" action="demoform.asp">
+    <form method="post" action="">
 		<ul data-role="listview">
 			<li>
 				<div class="list_order_success">
-					<div class="title"></div>
+
 					<div class="order_content">
 						<table width="100%">
+							<tr style="line-height: 40px;">
+								<td width="40%"><b>商品</b></td>
+								<td width="20%"><b>名称</b></td>
+								<td width="20%"><b>数量</b></td>
+								<td width="20%"><b>价格</b></td>
+							</tr>
 							{if $list}
 							{foreach from=$list item=item key=key}
 							<tr>
-								<td><img src="{$item.gift_pic}"></td>
-								<td>{$item.gift_name}</td>
-								<td>{$item.amount}</td>
-								<td>{$item.price}</td>
+								<td style="border-top: solid 1px #000000;"><img src="http://huge.com/public/uploads/{$item.gift_pic}" width="90px" height="60px" style="padding-top: 5px;"></td>
+								<td style="border-top: solid 1px #000000;">{$item.gift_name}</td>
+								<td style="border-top: solid 1px #000000;">{$item.amount}</td>
+								<td style="border-top: solid 1px #000000;">{$item.price}</td>
 							</tr>
 							{/foreach}
-							<tr>
-								<td>收货人：{$consignee}</td>
+							<tr style="line-height: 20px;">
+								<td colspan="4" style="border-top: solid 1px #000000;"><strong>收货人：</strong>{$consignee}</td>
 							</tr>
-							<tr>
-								<td>配送地址：{$address}</td>
+							<tr style="line-height: 20px;">
+								<td colspan="4"><strong>配送地址：</strong>{$address}</td>
 							</tr>
-							<tr>
-								<td>联系电话：{$mobile}</td>
+							<tr style="line-height: 20px;">
+								<td colspan="4"><strong>联系电话：</strong>{$mobile}</td>
 							</tr>
-							<tr>
-								<td>订单时间：{$create_time}</td>
+							<tr style="line-height: 20px;">
+								<td colspan="4"><strong>订单时间：</strong>{$create_time}</td>
 							</tr>
-							<tr>
-								<td>发货状态：{$send_time}</td>
+							<tr style="line-height: 20px;">
+								<td colspan="4"><strong>发货状态：</strong>{$send_time}</td>
 							</tr>
 							{/if}
 						</table>
+						
+						
 						
 					</div>
 				</div>

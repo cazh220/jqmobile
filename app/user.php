@@ -185,12 +185,12 @@ class user extends Action {
 	{
 		$user_id = $_GET['user_id'];
 		$qrcode = $_GET['qrcode'];
+		/*
 		if(empty($qrcode))
-		{
-			echo "<script>history.go(-1)</script>";
-			return false;
-		}
-		
+		{ 
+			echo "<script>alert('未知防伪码');history.back();</script>";
+		}*/
+
 		$page = $this->app->page();
 		$page->value('user_id',$user_id);
 		$page->value('qrcode',$qrcode);
@@ -386,7 +386,7 @@ class user extends Action {
 		importModule("userInfo","class");
 		$obj_user = new userInfo;
 		$user = $obj_user->get_user_detail($user_id);
-		
+
 		//获取 省份
 		importModule("AreaInfo","class");
 		$obj_area = new AreaInfo;
