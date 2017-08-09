@@ -97,7 +97,7 @@ $(function(){
 		 		<tr>
 		 			<td style="text-align: right; line-height: 25px;">兑换积分:</td>
 		 			<td style="text-align: left;">{$item.credits}</td>
-		 			<td><input type="checkbox" class="goods_check" value="{$item.gift_id}" data-id="{$item.credits}" style="position: static; margin-top: 0px; margin-left: 10px; float: left; zoom: 150%;">选择</td>
+		 			<td><input type="checkbox" class="goods_check" value="{$item.gift_id}" data-id="{$item.credits}" style="position: static; margin-top: 0px; margin-left: 10px; float: left; zoom: 60%;">选择</td>
 		 			
 		 		</tr>
 		 	</table>
